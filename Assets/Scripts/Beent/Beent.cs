@@ -3,8 +3,8 @@ public abstract class Beent : MonoBehaviour
 {
     #region Attributes
     #region Personal Attributes
-    protected virtual int CurrentHealth { get; set; }
-    protected virtual int MoveSpeed { get; set; }
+    [SerializeField] int CurrentHealth;
+    [SerializeField] int MoveSpeed;
     #endregion
     #region State Machine Attributes
     protected virtual State CurrentState { get; set; }
