@@ -14,7 +14,7 @@ public abstract class State : MonoBehaviour
     }
   
     protected abstract Transform ChooseDestination(); //Abstract because destination choosing is different for each class
-    protected abstract void EnterState(); //Called when a state is first entered, include logic for assigning variables and other initialization things
-    protected abstract void UpdateState(); //The states main functionality whether that be fleeing, processing, etc
-    protected abstract void ExitState(); //Any cleanup you want to do before exiting a state
+    public abstract void EnterState(); //Called when a state is first entered, include logic for assigning variables and other initialization things
+    public abstract void UpdateState(); //The states main functionality whether that be fleeing, processing, etc
+    public abstract void ExitState(); //Any cleanup you want to do before exiting a state
 }
