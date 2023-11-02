@@ -562,6 +562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374005569}
+  - component: {fileID: 1374005570}
   m_Layer: 0
   m_Name: A*
   m_TagString: Untagged
@@ -584,6 +585,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1374005570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374005568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e66829c125844b40ad1beff2d8225bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  gridWorldSize: {x: 10, y: 10}
+  nodeRadius: 0.5
 --- !u!1 &1744631763
 GameObject:
   m_ObjectHideFlags: 0
