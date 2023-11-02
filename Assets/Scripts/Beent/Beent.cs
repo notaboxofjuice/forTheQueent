@@ -1,6 +1,9 @@
 using UnityEngine;
+using BeentEnums;
 public abstract class Beent : MonoBehaviour
 {
+    public BeentType beentType;
+
     #region Attributes
     #region Personal Attributes
     [SerializeField] int CurrentHealth;
