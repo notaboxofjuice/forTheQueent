@@ -19,6 +19,7 @@ public class Pathfinding : MonoBehaviour
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
+        startNode.gCost = 0;
         //use list for open nodes so that we can add and remove nodes from the list 
         List<Node> openNodes = new List<Node>();
         //use hashset for closed and already visited nodes
@@ -90,6 +91,8 @@ public class Pathfinding : MonoBehaviour
             //magic voodoo that goes back through the nodes by following a train of parented nodes
             currentNode = currentNode.parent;
         }
+        //add the start node which is where we should be after the loop is finished
+        path.Add(currentNode);
         //path is originally backwards so the order needs to flipped the right way around
         path.Reverse();
         Debug.Log("Path found with: " + path.Count + " nodes.");
