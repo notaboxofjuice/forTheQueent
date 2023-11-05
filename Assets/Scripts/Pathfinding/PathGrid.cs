@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class PathGrid : MonoBehaviour
 {
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] Vector2 gridWorldSize;
@@ -35,9 +35,38 @@ public class Grid : MonoBehaviour
                 //checks for our layer mask to find nodes that should be marked as obstacles
                 bool isObstacle = Physics.CheckSphere(worldPoint, nodeRadius, obstacleMask);
                 //add node with parameter to grid array
-                grid[i,j] = new Node(isObstacle, worldPoint);
+                grid[i,j] = new Node(isObstacle, worldPoint, i, j);
             }
         }
+    }
+
+    public List<Node> GetNeighborNodes(Node node)
+    {
+        //create a new list to hold our neighbor nodes in
+        List<Node> neighbors = new List<Node>();
+        //loop through surrounding 3*3 grid
+        for(int i = -1; i < 1; i++)
+        {
+            for(int j = -1; j < 1; j++)
+            {
+                //case for center of grid which is not a neighbor but our current node
+                if(i == 0 && j == 0)
+                {
+                    continue;
+                }
+                //add current loop var to get points around center
+                int checkX = node.gridX + i;
+                int checkY = node.gridY + j;
+                //check to see if the node is valid and in bounds to the overall grid
+                if(checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    //add node to list of neighboring nodes
+                    neighbors.Add(grid[checkX, checkY]);
+                    Debug.Log("Adding Neighbor Node");
+                }
+            }
+        }
+        return neighbors;
     }
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
@@ -52,6 +81,8 @@ public class Grid : MonoBehaviour
         // return node at address
         return grid[x,y];    
     }
+
+    public List<Node> path;
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
@@ -60,6 +91,13 @@ public class Grid : MonoBehaviour
             foreach(Node n in grid)
             {
                 Gizmos.color = n.isObstacle ? Color.red : Color.green;
+                if(path != null)
+                {
+                    if (path.Contains(n))
+                    {
+                        Gizmos.color = Color.black;
+                    }
+                }
                 Gizmos.DrawCube(n.worldCoords, Vector3.one * (nodeDiameter-0.1f));
             }
         }
