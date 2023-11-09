@@ -8,11 +8,13 @@ using BeentEnums;
 public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
-    public int beentPopulation; //making an int because beent is a whole number
-    public float currentPollen;
-    private float startPollen = 0;
-    protected List<GameObject> defenses = new List<GameObject>();
-    protected List<Beent> beents = new List<Beent>();
+    public int beentPopulation;
+    public int currentPollen;
+    public int maxDefenses;
+
+    public List<DefenseSocket> defenseSockets;
+    public List<GameObject> defenses = new List<GameObject>();
+    public List<Beent> beents = new List<Beent>();
 
     private void Awake()
     {
@@ -20,12 +22,17 @@ public class Hive : MonoBehaviour
         if(Instance == null) Instance = this;
         else Destroy(gameObject);
         #endregion
+
+        //Initialization
+        currentPollen = 0;
+        beentPopulation = 0;
+        maxDefenses = defenseSockets.Count; //max defenses = the number of sockets
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentPollen = startPollen;
+
     }
 
     // Update is called once per frame
@@ -88,7 +95,6 @@ public class Hive : MonoBehaviour
             default:
                 Debug.Log("Error: Invalid Beent Type");
                 return -1;
-                break;
         }
     }
 
