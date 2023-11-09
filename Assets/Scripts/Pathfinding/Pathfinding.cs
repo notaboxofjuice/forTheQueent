@@ -48,7 +48,7 @@ public class Pathfinding : MonoBehaviour
             if(currentNode == targetNode)
             {
                 RetracePath(startNode, targetNode);
-                return;
+                break;
             }
             //Run through each neighbor of the current node
             foreach(Node neighbor in grid.GetNeighborNodes(currentNode))

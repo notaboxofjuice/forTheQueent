@@ -45,9 +45,9 @@ public class PathGrid : MonoBehaviour
         //create a new list to hold our neighbor nodes in
         List<Node> neighbors = new List<Node>();
         //loop through surrounding 3*3 grid
-        for(int i = -1; i < 1; i++)
+        for(int i = -1; i <= 1; i++)
         {
-            for(int j = -1; j < 1; j++)
+            for(int j = -1; j <= 1; j++)
             {
                 //case for center of grid which is not a neighbor but our current node
                 if(i == 0 && j == 0)
