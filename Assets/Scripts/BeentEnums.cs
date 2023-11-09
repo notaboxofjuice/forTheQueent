@@ -8,6 +8,7 @@ namespace BeentEnums
     {
         Worker,
         Gatherer,
-        Warrior
+        Warrior,
+        BeentBarian
     }
 }
