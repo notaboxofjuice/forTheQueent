@@ -5,14 +5,10 @@ public abstract class Beent : MonoBehaviour
 {
     #region Attributes
     #region Personal Attributes
-<<<<<<< Updated upstream
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
     [SerializeField] public BeentType beentType;
-=======
-    [SerializeField] int CurrentHealth;
-    [SerializeField] float MoveSpeed;
->>>>>>> Stashed changes
+
     #endregion
     #region State Machine Attributes
     protected State CurrentState { get; set; }
