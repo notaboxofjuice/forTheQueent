@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    [SerializeField] Transform seeker;
     [SerializeField] Transform target;
     PathGrid grid;
     private void Awake()
     {
-        grid = gameObject.GetComponent<PathGrid>();
+        grid = GameObject.FindGameObjectWithTag("A*").GetComponent<PathGrid>();
     }
     private void Update()
     {
-        CalculatePath(seeker.position, target.position);
+        CalculatePath(transform.position, target.position);
     }
     void CalculatePath(Vector3 startPos, Vector3 targetPos)
     {

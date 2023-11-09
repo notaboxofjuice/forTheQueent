@@ -8,6 +8,7 @@ public abstract class Beent : MonoBehaviour
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
     [SerializeField] public BeentType beentType;
+
     #endregion
     #region State Machine Attributes
     protected State CurrentState { get; set; }
