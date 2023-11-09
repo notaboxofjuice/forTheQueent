@@ -5,6 +5,7 @@ public abstract class Beent : MonoBehaviour
 {
     #region Attributes
     #region Personal Attributes
+    protected Pathfinding pathfinder;
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
     [SerializeField] public BeentType beentType;
@@ -16,6 +17,10 @@ public abstract class Beent : MonoBehaviour
     #endregion
     #region Operations
     #region Unity Operations
+    private void Awake()
+    {
+        pathfinder = GetComponent<Pathfinding>();
+    }
     protected virtual void Update()
     {
         if (CurrentState != null) CurrentState.UpdateState();

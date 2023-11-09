@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    [SerializeField] Transform target;
     PathGrid grid;
     private void Awake()
     {
         grid = GameObject.FindGameObjectWithTag("A*").GetComponent<PathGrid>();
     }
-    private void Update()
-    {
-        CalculatePath(transform.position, target.position);
-    }
-    void CalculatePath(Vector3 startPos, Vector3 targetPos)
+
+    public void CalculatePath(Vector3 startPos, Vector3 targetPos)
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
