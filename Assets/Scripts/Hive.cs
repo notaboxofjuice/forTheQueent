@@ -7,13 +7,20 @@ using BeentEnums;
 
 public class Hive : MonoBehaviour
 {
+    public static Hive Instance { get; private set; } // singelton instantiation
     public int beentPopulation; //making an int because beent is a whole number
     public float currentPollen;
     private float startPollen = 0;
     protected List<GameObject> defenses = new List<GameObject>();
     protected List<Beent> beents = new List<Beent>();
 
-
+    private void Awake()
+    {
+        #region Singleton instantiation
+        if(Instance == null) Instance = this;
+        else Destroy(gameObject);
+        #endregion
+    }
 
     // Start is called before the first frame update
     void Start()

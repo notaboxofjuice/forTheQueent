@@ -1,16 +1,16 @@
 using UnityEngine;
 using BeentEnums;
+
 public abstract class Beent : MonoBehaviour
 {
-    public BeentType beentType;
-
     #region Attributes
     #region Personal Attributes
-    [SerializeField] int CurrentHealth;
-    [SerializeField] int MoveSpeed;
+    [SerializeField] protected int CurrentHealth;
+    [SerializeField] protected float MoveSpeed;
+    [SerializeField] public BeentType beentType;
     #endregion
     #region State Machine Attributes
-    protected virtual State CurrentState { get; set; }
+    protected State CurrentState { get; set; }
     #endregion
     #endregion
     #region Operations
@@ -22,18 +22,18 @@ public abstract class Beent : MonoBehaviour
     }
     #endregion
     #region Local Operations
-    protected virtual float CheckPopulation()
-    { // get a count of all objects tagged with Beent
-        return GameObject.FindGameObjectsWithTag("Beent").Length;
+    protected float CheckPopulation(BeentType beent)
+    { // get a count of all beents of desired type
+        return FindObjectsOfType<Warrior>().Length;
     }
-    public virtual void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
         if (CurrentHealth <= 0) Destroy(gameObject);
     }
     #endregion
     #region State Machine Operations
-    protected virtual void ChangeState(State newState)
+    protected void ChangeState(State newState)
     {
         if (CurrentState != null) CurrentState.ExitState();
         CurrentState = newState;
