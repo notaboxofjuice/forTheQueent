@@ -6,6 +6,7 @@ TagManager:
   tags:
   - A*
   - Enemy
+  - Beent
   layers:
   - Default
   - TransparentFX

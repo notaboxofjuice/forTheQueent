@@ -13,8 +13,8 @@ public class Hive : MonoBehaviour
     public int maxDefenses;
 
     public List<DefenseSocket> defenseSockets;
-    public List<GameObject> defenses = new List<GameObject>();
-    public List<Beent> beents = new List<Beent>();
+    public List<GameObject> defenses = new();
+    public List<Beent> beents = new();
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Hive : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        return; // todo
     }
 
     // Update is called once per frame
@@ -59,11 +59,10 @@ public class Hive : MonoBehaviour
     public int CountAllBeents()
     {
         int beentNum = beents.Count;
-
-        return beents.Count;
+        return beentNum;
     }
 
-    protected int CountBeentsByType(BeentType _type)
+    public int CountBeentsByType(BeentType _type)
     {
         int workerNum = 0;
         int gathererNum = 0;

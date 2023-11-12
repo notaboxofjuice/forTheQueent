@@ -8,8 +8,7 @@ public abstract class Beent : MonoBehaviour
     protected Pathfinding pathfinder;
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
-    [SerializeField] public BeentType beentType;
-
+    public BeentType beentType;
     #endregion
     #region State Machine Attributes
     protected State CurrentState { get; set; }
@@ -21,17 +20,13 @@ public abstract class Beent : MonoBehaviour
     {
         pathfinder = GetComponent<Pathfinding>();
     }
-    protected virtual void Update()
+    protected virtual void Update() // perform current state, or do senses
     {
         if (CurrentState != null) CurrentState.UpdateState();
-        DoSenses();
+        else DoSenses();
     }
     #endregion
     #region Local Operations
-    protected float CheckPopulation(BeentType beent)
-    { // get a count of all beents of desired type
-        return FindObjectsOfType<Warrior>().Length;
-    }
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
