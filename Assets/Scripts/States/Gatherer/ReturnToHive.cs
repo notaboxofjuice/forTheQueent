@@ -7,7 +7,6 @@ public class ReturnToHive : State
     public override void EnterState()
     {
         Debug.Log(gameObject.name + " is returning to Hive");
-        throw new System.NotImplementedException();
     }
 
     public override void ExitState()
@@ -15,13 +14,13 @@ public class ReturnToHive : State
         return;
     }
 
-    public override void UpdateState()
+    public override void UpdateState() // Pathfind to Hive
     {
-        return; // pathfind to ChooseDestination()
+        return;
     }
 
-    protected override Transform ChooseDestination() // 
+    protected override Vector3 ChooseDestination() // Return Hive transform
     {
-        return Hive.Instance.transform; // Hive transform
+        return Hive.Instance.transform.position; // Hive position
     }
 }

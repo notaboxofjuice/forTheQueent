@@ -20,8 +20,8 @@ public class FleeState : State
         return; // pathfind to ChooseDestination()
     }
 
-    protected override Transform ChooseDestination()
+    protected override Vector3 ChooseDestination()
     {
-        return null; // find transform in opposite direction of enemy
+        return Vector3.zero; // find transform in opposite direction of enemy
     }
 }

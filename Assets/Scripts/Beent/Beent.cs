@@ -18,11 +18,7 @@ public abstract class Beent : MonoBehaviour
     #endregion
     #region Operations
     #region Unity Operations
-    private void Awake()
-    {
-        pathfinder = GetComponent<Pathfinding>();
-    }
-    protected virtual void Update() // perform current state, or do senses
+    protected virtual void FixedUpdate() // perform current state, or do senses
     {
         if (CurrentState != null) CurrentState.UpdateState();
         else DoSenses();
