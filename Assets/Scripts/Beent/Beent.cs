@@ -1,6 +1,8 @@
 using UnityEngine;
 using BeentEnums;
-
+/// <summary>
+/// Abstract Beent script that the Gatherer, Worker, and Warior scripts inherit from
+/// </summary>
 public abstract class Beent : MonoBehaviour
 {
     #region Attributes

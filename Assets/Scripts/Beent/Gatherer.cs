@@ -1,4 +1,7 @@
 using UnityEngine;
+/// <summary>
+/// Script for the Gatherer Beent, which collects pollen and returns it to the hive
+/// </summary>
 public class Gatherer : Beent
 {
     #region Attributes
@@ -36,7 +39,7 @@ public class Gatherer : Beent
         }
         else if (other.CompareTag("Hive")) // in range of hive
         {
-            if (heldPollen > 0) DepositPollen(); // deposit pollen
+            if (heldPollen > 0) DepositPollen(); // has pollen, deposit pollen
         }
         else if (other.CompareTag("Enemy")) // in range of enemy
         {
