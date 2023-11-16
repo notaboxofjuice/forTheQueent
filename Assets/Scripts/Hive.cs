@@ -10,6 +10,7 @@ public class Hive : MonoBehaviour
     public static Hive Instance { get; private set; } // singelton instantiation
     public int beentPopulation;
     public int currentPollen;
+    public int currentNectar;
     public int maxDefenses;
 
     public List<DefenseSocket> defenseSockets;
@@ -25,8 +26,9 @@ public class Hive : MonoBehaviour
 
         //Initialization
         currentPollen = 0;
+        currentNectar = 0;
         beentPopulation = 0;
-        maxDefenses = defenseSockets.Count; //max defenses = the number of sockets
+        maxDefenses = defenseSockets.Count; //max defenses = the number of sockets, be sure to add all existing socket to the list
     }
 
     // Start is called before the first frame update
@@ -38,7 +40,7 @@ public class Hive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CountBeentsByType(BeentType.Worker);
+        
     }
 
     //Counts the number of defenses in the game
@@ -62,11 +64,28 @@ public class Hive : MonoBehaviour
         return beentNum;
     }
 
+    public bool HasOpenDefenseSockets()
+    {
+        int validDefenseNum = 0;
+
+        foreach(DefenseSocket socket in defenseSockets)
+        {
+            if (!socket.isOccupied)
+            {
+                validDefenseNum++;
+            }
+        }
+
+        if (validDefenseNum > 0) return true;
+        else return false;
+    }
+
     public int CountBeentsByType(BeentType _type)
     {
         int workerNum = 0;
         int gathererNum = 0;
         int warriorNum = 0;
+        int beentbarianNum = 0;
 
         switch (_type)
         {
@@ -90,6 +109,13 @@ public class Hive : MonoBehaviour
                     if (beent.beentType == _type) warriorNum++;
                 }
                 return warriorNum;
+            
+            case BeentType.Beentbarian:
+                foreach (Beent beent in beents)
+                {
+                    if (beent.beentType == _type) beentbarianNum++;
+                }
+                return beentbarianNum;
 
             default:
                 Debug.Log("Error: Invalid Beent Type");

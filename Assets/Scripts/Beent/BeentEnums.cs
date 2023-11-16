@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Working on this script: Ky'onna
+
 namespace BeentEnums
 {
     public enum BeentType
@@ -9,6 +11,6 @@ namespace BeentEnums
         Worker,
         Gatherer,
         Warrior,
-        BeentBarian
+        Beentbarian
     }
 }
