@@ -9,7 +9,7 @@ public class Gatherer : Beent
     [SerializeField] int heldPollen;
     #endregion
     #region Operations
-    protected override void DoSenses() // called in Beent.Update() if current state is null
+    protected override void DoSenses() // called in Beent.FixedUpdate() if current state is null
     {
         if (heldPollen == maxPollen) ChangeState(GetComponent<ReturnToHive>()); // if full, return to hive
         else // decide to Find Pollen or Return To Hive
@@ -18,6 +18,7 @@ public class Gatherer : Beent
             int WarriorCount = Hive.Instance.CountBeentsByType(BeentEnums.BeentType.Warrior);
             int WorkerCount = Hive.Instance.CountBeentsByType(BeentEnums.BeentType.Worker);
             int BeentCount = WarriorCount + WorkerCount; // total beents, not counting gatherers
+
             if (WarriorCount > WorkerCount) // more warriors, more likely to switch to FindPollen state
             {
                 if (Random.Range(0, BeentCount) < WarriorCount) ChangeState(GetComponent<FindPollen>());
@@ -36,6 +37,7 @@ public class Gatherer : Beent
         {
             heldPollen++; // collect pollen
             Destroy(other.gameObject); // destroy pollen
+            CurrentState = null; // exit current state (has a chance to find more or return to hive)
         }
         else if (other.CompareTag("Hive")) // in range of hive
         {
@@ -48,8 +50,9 @@ public class Gatherer : Beent
     }
     private void DepositPollen()
     {
-        Hive.Instance.currentPollen += heldPollen;
-        heldPollen = 0;
+        Hive.Instance.currentPollen += heldPollen; // add pollen to hive
+        heldPollen = 0; // empty pollen
+        ChangeState(GetComponent<FindPollen>()); // return to finding pollen
     }
     #endregion
 }
