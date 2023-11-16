@@ -22,7 +22,7 @@ public class DefenseObj : MonoBehaviour
         //take damage
         currentHealth =- _damageAmount;
 
-        //start the cooldown
+        //start the cooldown, so  we don't take repeated damage
         canTakeDamage = false;
         StartCoroutine(DamageCooldown());
     }
