@@ -24,10 +24,18 @@ public class Gatherer : Beent
                 if (Random.Range(0, BeentCount) < WarriorCount) ChangeState(GetComponent<FindPollen>());
                 else ChangeState(GetComponent<ReturnToHive>());
             }
-            else // more workers, more likely to switch to ReturnToHive state
+            else if (WorkerCount > WarriorCount) // more workers, more likely to switch to ReturnToHive state
             {
                 if (Random.Range(0, BeentCount) < WorkerCount) ChangeState(GetComponent<ReturnToHive>());
                 else ChangeState(GetComponent<FindPollen>());
+            }
+            else // equal populations, 50/50 chance to switch to either state
+            {
+                if (Random.Range(0, 2) == 0) ChangeState(GetComponent<FindPollen>());
+                else ChangeState(GetComponent<ReturnToHive>());
+            }
+            {
+
             }
         }
     }
