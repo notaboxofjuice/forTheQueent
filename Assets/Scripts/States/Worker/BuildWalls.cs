@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildWalls : State
 {
     [SerializeField] GameObject defenseObj;
+    private DefenseSocket socket;
     public override void EnterState()
     {
         Debug.Log("Building walls.");
@@ -20,13 +21,13 @@ public class BuildWalls : State
     public override void UpdateState()
     {
         //find a defense socket
-        DefenseSocket socket = FindValidWallSocket();
+        socket = FindValidWallSocket();
 
         //if the socket is valid go to it and build a wall
         if (socket != null)
         {
             //path find to the location of the socket
-            GetComponent<Pathfinding>().CalculatePath(transform.position, socket.gameObject.transform.position);
+            MyPathfinder.CalculatePath(transform.position, ChooseDestination());
 
             if (Vector3.Distance(this.gameObject.transform.position, socket.gameObject.transform.position) < 1.0f)
             {
@@ -37,10 +38,9 @@ public class BuildWalls : State
         }
     }
 
-    protected override Transform ChooseDestination()
+    protected override Vector3 ChooseDestination()
     {
-        Debug.Log("uneccessary for this state");
-        return null;
+        return socket.gameObject.transform.position;
     }
 
     private void BuildDefenses(GameObject _defensiveWall, DefenseSocket _socket)  //builds protective walls to keep Beentbarians at bay

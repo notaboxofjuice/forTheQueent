@@ -10,42 +10,35 @@ public class Worker : Beent
     [SerializeField] Transform defenseObjSpawn;
     public GameObject defenseObj;
     [SerializeField] float pollenProcessTime;
-    private bool fleeing;
-
 
     private void Awake()
     {
         //initialization
         beentType = BeentType.Worker;
-        fleeing = false;
     }
 
-    protected override void DoSenses() // look for events and trigger transitions for state machine
+    protected override void DoSenses() // look for events and trigger transitions for state machine, called when current state == null
     {
-        //Since stayig alive is #1 priority, only do senses if not currently fleeing
-        if (!fleeing)
+        //store beent populations
+        int gathererNum = Hive.Instance.CountBeentsByType(BeentType.Gatherer);
+        int warriorNum = Hive.Instance.CountBeentsByType(BeentType.Warrior);
+        int beentCount = gathererNum + warriorNum; // total beents minus the workers and beentbarians
+
+        if (warriorNum > gathererNum)
         {
-            //store beent populations
-            int gathererNum = Hive.Instance.CountBeentsByType(BeentType.Gatherer);
-            int warriorNum = Hive.Instance.CountBeentsByType(BeentType.Warrior);
-            int beentCount = gathererNum + warriorNum; // total beents minus the workers and beentbarians
-
-            if (warriorNum > gathererNum)
-            {
-                //More likely to produce nectar
-                if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
-                else if (Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
-            }
-            else
-            {
-                //more likely to build defensive walls
-                if ((Random.Range(0, beentCount) < gathererNum) && Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
-                else if (Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
-            }
-
-            //if all those statements return false we idle until they are true
-            ChangeState(GetComponent<IdleRoam>());
+            //More likely to produce nectar
+            if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
+            else if (Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
         }
+        else
+        {
+            //more likely to build defensive walls
+            if ((Random.Range(0, beentCount) < gathererNum) && Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
+            else if (Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
+        }
+
+        //if all those statements return false we idle until they are true
+        ChangeState(GetComponent<IdleRoam>());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +46,6 @@ public class Worker : Beent
         if (other.CompareTag("Enemy")) // in range of enemy
         {
             ChangeState(GetComponent<FleeState>()); // interrupt current state and flee
-            fleeing = true;
         }
     }
 
@@ -61,7 +53,8 @@ public class Worker : Beent
     {
         if (other.CompareTag("Enemy")) // in range of enemy
         {
-            fleeing = false;
+            //null the current state to trigger do senses
+            CurrentState = null;
         }
     }
 

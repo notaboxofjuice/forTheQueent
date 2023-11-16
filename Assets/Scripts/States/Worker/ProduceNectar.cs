@@ -22,7 +22,7 @@ public class ProduceNectar : State
     public override void UpdateState()
     {
         //pathfind to the pollen storage
-        GetComponent<Pathfinding>().CalculatePath(transform.position, ChooseDestination().position);
+        MyPathfinder.CalculatePath(transform.position, ChooseDestination());
 
         //if within adequate distance, produce nectar
         if (Vector3.Distance(this.gameObject.transform.position, pollenStorage.transform.position) > 1.0f)
@@ -31,11 +31,11 @@ public class ProduceNectar : State
         }
     }
 
-    protected override Transform ChooseDestination()
+    protected override Vector3 ChooseDestination()
     {
         //Get the transform of the pollen storage
-        Transform transform = pollenStorage.gameObject.transform;
-        return transform;
+        
+        return pollenStorage.gameObject.transform.position;
     }
 
     private void ProcessPollen()

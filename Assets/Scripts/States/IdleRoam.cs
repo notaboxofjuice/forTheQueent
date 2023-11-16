@@ -28,9 +28,9 @@ public class IdleRoam : State
 
     }
 
-    protected override Transform ChooseDestination()
+    protected override Vector3 ChooseDestination()
     {
-        //find a new point
-        return null;
+        //find a new point, placholder
+        return Vector3.zero;
     }
 }
