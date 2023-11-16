@@ -19,7 +19,6 @@ public class PathGrid : MonoBehaviour
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
     }
-
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
@@ -39,7 +38,6 @@ public class PathGrid : MonoBehaviour
             }
         }
     }
-
     public List<Node> GetNeighborNodes(Node node)
     {
         //create a new list to hold our neighbor nodes in
@@ -81,7 +79,6 @@ public class PathGrid : MonoBehaviour
         // return node at address
         return grid[x,y];    
     }
-
     public List<Node> path;
     private void OnDrawGizmos()
     {

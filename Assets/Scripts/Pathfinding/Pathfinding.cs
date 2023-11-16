@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     PathGrid grid;
+    public List<Node> lastFoundPath = new List<Node>();
     private void Awake()
     {
         grid = GameObject.FindGameObjectWithTag("A*").GetComponent<PathGrid>();
@@ -42,7 +43,8 @@ public class Pathfinding : MonoBehaviour
             //If current node is the same as our target we have found our path and can return.
             if(currentNode == targetNode)
             {
-                RetracePath(startNode, targetNode);
+                lastFoundPath.Clear();
+                lastFoundPath = RetracePath(startNode, targetNode);
                 break;
             }
             //Run through each neighbor of the current node
@@ -74,7 +76,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    void RetracePath(Node start, Node end)
+    List<Node> RetracePath(Node start, Node end)
     {
         //create a list of nodes that represents our path
         List<Node> path = new List<Node>();
@@ -93,6 +95,7 @@ public class Pathfinding : MonoBehaviour
         Debug.Log("Path found with: " + path.Count + " nodes.");
         //for testing
         grid.path = path;
+        return path;
     }
     int CalculateDistance(Node A, Node B)
     {
