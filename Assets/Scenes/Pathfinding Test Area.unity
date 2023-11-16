@@ -840,7 +840,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   gridWorldSize: {x: 10, y: 10}
-  nodeRadius: 0.5
+  nodeRadius: 0.33
 --- !u!1 &1744631763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,8 +1050,6 @@ MonoBehaviour:
   CurrentHealth: 5
   MoveSpeed: 5
   beentType: 2
-  closeApproach: 1
-  updateTime: 0.25
 --- !u!114 &1989364401
 MonoBehaviour:
   m_ObjectHideFlags: 0
