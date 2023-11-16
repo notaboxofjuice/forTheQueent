@@ -11,12 +11,12 @@ public class ReturnToHive : State
 
     public override void ExitState()
     {
-        return;
+        Debug.Log(gameObject.name + " is not returning to Hive");
     }
 
     public override void UpdateState() // Pathfind to Hive
     {
-        return;
+        MyPathfinder.CalculatePath(transform.position, ChooseDestination());
     }
 
     protected override Vector3 ChooseDestination() // Return Hive transform

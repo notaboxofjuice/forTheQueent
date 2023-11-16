@@ -8,7 +8,7 @@ public class FindPollen : State
     public override void EnterState()
     {
         Debug.Log(gameObject.name + " is looking for pollen");
-        TargetPollen = LookForPollen();
+        TargetPollen = LookForPollen(); // find nearest pollen
     }
 
     public override void ExitState()
