@@ -30,7 +30,7 @@ public class Chase : State
     {
         yield return new WaitForFixedUpdate();
         MyPathfinder.CalculatePath(transform.position, ChooseDestination());
-        if (MyPathfinder.lastFoundPath != null)
+        if (MyPathfinder.lastFoundPath != null && MyPathfinder.lastFoundPath.Count > 1)
         {
             transform.position = Vector3.MoveTowards(transform.position, MyPathfinder.lastFoundPath[1].worldCoords, MoveSpeed * Time.deltaTime);
         }
