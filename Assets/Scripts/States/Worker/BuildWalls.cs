@@ -63,6 +63,8 @@ public class BuildWalls : State
 
         //Update the defense obj list
         Hive.Instance.AddDefence(wall);
+
+        UI.WorkerProductivity++; //Increment the worker productivity for score calculation -Leeman
     }
 
     private DefenseSocket FindValidWallSocket() //finds a valid Socket to spawn a wall

@@ -29,9 +29,9 @@ public class FindPollen : State
     private GameObject LookForPollen() // loop through PollenFactory.PollenList and find closest one
     {
         // Set closestPollen to first pollen in list
-        GameObject closestPollen = PollenFactory.Instance.PollenList[0]; 
+        GameObject closestPollen = PollenFactory.PollenList[0]; 
         // Loop through PollenFactory.PollenList
-        foreach (GameObject pollen in PollenFactory.Instance.PollenList)
+        foreach (GameObject pollen in PollenFactory.PollenList)
         {
             // If the pollen is closer than the current closest pollen
             if (Vector3.Distance(pollen.transform.position, transform.position) < Vector3.Distance(closestPollen.transform.position, transform.position))

@@ -7,25 +7,14 @@ using UnityEngine;
 /// </summary>
 public class PollenFactory : MonoBehaviour
 {
-    public static PollenFactory Instance { get; private set; }
     [Header("Pollen Settings")]
     [SerializeField] GameObject PollenPrefab;
     [SerializeField] int MaxPollen;
-    public List<GameObject> PollenList = new();
+    public static List<GameObject> PollenList = new();
     [Header("Spawn Settings")]
     [Tooltip("How long to wait between pollen spawns")][SerializeField] int SpawnCooldown;
     [Tooltip("Minimum distance between pollen and other objects")] [SerializeField] int SpawnRadius;
     [Tooltip("Maximum range of the spawn area")] [SerializeField] int SpawnRange;
-    private void Awake() // Singleton instantiation
-    {
-        if (Instance != null) // If there is already a PollenFactory in the scene
-        {
-            Debug.LogError("There is more than one PollenFactory in the scene!");
-            Destroy(gameObject); // Destroy this object
-            return;
-        }
-        Instance = this; // Set singleton instance
-    }
     void Start() // Start coroutine to instantiate new pollen objects
     {
         StartCoroutine(SpawnPollen());

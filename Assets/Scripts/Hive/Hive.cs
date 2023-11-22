@@ -129,4 +129,9 @@ public class Hive : MonoBehaviour
         beents.Add(beent);
     }
 
+    private void OnDestroy()
+    {
+        // Trigger game over -Leeman
+        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<UI>().EndGame();
+    }
 }

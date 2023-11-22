@@ -43,6 +43,8 @@ public class ProduceNectar : State
         Hive.Instance.currentPollen--;
         Hive.Instance.currentNectar++;
 
+        UI.WorkerProductivity++; //Increment the worker productivity for score calculation -Leeman
+
         //Start the cooldown
         canProcess = false;
 

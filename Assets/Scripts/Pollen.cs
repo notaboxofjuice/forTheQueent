@@ -3,6 +3,6 @@ public class Pollen : MonoBehaviour
 {
     private void OnDestroy()
     {
-        PollenFactory.Instance.PollenList.Remove(gameObject);
+        PollenFactory.PollenList.Remove(gameObject);
     }
 }
