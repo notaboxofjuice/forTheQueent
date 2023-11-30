@@ -18,14 +18,8 @@ public class FindPollen : State
 
     public override void UpdateState()
     {
-        MyPathfinder.CalculatePath(transform.position, ChooseDestination()); // pathfind to pollen
+        myAgent.SetDestination(TargetPollen.transform.position); // pathfind to nearest pollen
     }
-
-    protected override Vector3 ChooseDestination()
-    {
-        return TargetPollen.transform.position; // return nearest pollen
-    }
-
     private GameObject LookForPollen() // loop through PollenFactory.PollenList and find closest one
     {
         // Set closestPollen to first pollen in list
