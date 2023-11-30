@@ -138,6 +138,6 @@ public class Hive : MonoBehaviour
     private void OnDestroy()
     {
         // Trigger game over -Leeman
-        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<UI>().EndGame();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<UI>().EndGame();
     }
 }
