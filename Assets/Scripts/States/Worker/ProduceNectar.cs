@@ -20,6 +20,7 @@ public class ProduceNectar : State
     {
         Debug.Log("Exiting process pollen");
         StopAllCoroutines();
+        base.ExitState();
     }
 
     public override void UpdateState()

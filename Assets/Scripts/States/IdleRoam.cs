@@ -22,6 +22,7 @@ public class IdleRoam : State
     public override void ExitState()
     {
         Debug.Log("Exiting idle roam");
+        base.ExitState();
     }
 
     public override void UpdateState()

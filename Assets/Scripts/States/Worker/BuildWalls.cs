@@ -17,6 +17,7 @@ public class BuildWalls : State
     public override void ExitState()
     {
         Debug.Log("Exiting building walls");
+        base.ExitState();
     }
 
     public override void UpdateState()
