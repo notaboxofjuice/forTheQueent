@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3933835716475988066, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 86d287e1f9c86f9449dd16a9e339138e, type: 2}
     - target: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_Name
       value: Worker
@@ -62,7 +66,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3496342517054987638}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5756170700928041778}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5171421415292582733}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8211069196910878418}
   m_SourcePrefab: {fileID: 100100000, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+--- !u!114 &2406788483038087666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6653617620533090530, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+  m_PrefabInstance: {fileID: 9020926273347326224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814258761043163697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b18c18c9404a54d976bccd0c683eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4814258761043163697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
@@ -83,7 +107,6 @@ MonoBehaviour:
   CurrentHealth: 5
   MoveSpeed: 5
   beentType: 0
-  defenseObjSpawn: {fileID: 0}
   pollenProcessTime: 0
 --- !u!114 &3496342517054987638
 MonoBehaviour:
@@ -97,3 +120,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366da832fde45244858a28f0bef7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyPathfinder: {fileID: 2406788483038087666}
+  MoveSpeed: 10
+  fleeLocationOffset: 2
+--- !u!114 &5756170700928041778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814258761043163697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59608588cd62d0c4585c38463ed0faaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPathfinder: {fileID: 2406788483038087666}
+  defenseObj: {fileID: 6518402975294987331, guid: 685235829cbb5ad4b9567c78aca638d6, type: 3}
+  wallOffset: 2
+--- !u!114 &5171421415292582733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814258761043163697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65b9da59a79c064abc817fe486443e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPathfinder: {fileID: 2406788483038087666}
+  pollenStorage: {fileID: 0}
+  processColldownTime: 1
+--- !u!114 &8211069196910878418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4814258761043163697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84503216f3179fb46a6bab29ef3cef8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPathfinder: {fileID: 2406788483038087666}

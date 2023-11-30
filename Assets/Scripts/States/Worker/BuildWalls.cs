@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuildWalls : State
 {
     [SerializeField] GameObject defenseObj;
+   [Tooltip("Minimum distance to be considered at the wall socket")] [SerializeField] float wallOffset;
     private DefenseSocket socket;
     public override void EnterState()
     {

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 
 //Working on this script: Ky'onna
 public class DefenseObj : MonoBehaviour
 {
-    public DefenseSocket myDefenseSocket;
-    public int currentHealth;
+    [HideInInspector] public DefenseSocket myDefenseSocket;
+    [HideInInspector] public int currentHealth;
     [SerializeField] int maxHealth;
     [SerializeField] float damageCooldown;
     private bool canTakeDamage;
@@ -22,7 +23,7 @@ public class DefenseObj : MonoBehaviour
         //take damage
         currentHealth =- _damageAmount;
 
-        //start the cooldown, so  we don't take repeated damage
+        //start the cooldown, so we don't take repeated damage
         canTakeDamage = false;
         StartCoroutine(DamageCooldown());
     }

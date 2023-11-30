@@ -7,8 +7,6 @@ using System.Collections.Generic;
 
 public class Worker : Beent
 {
-    [SerializeField] Transform defenseObjSpawn;
-    public GameObject defenseObj;
     [SerializeField] float pollenProcessTime;
 
     private void Awake()

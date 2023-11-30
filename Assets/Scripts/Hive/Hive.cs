@@ -8,14 +8,18 @@ using BeentEnums;
 public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
+
+    [Header("READONLY")]
     public int beentPopulation;
     public int currentPollen;
     public int currentNectar;
     public int maxDefenses;
-
-    public List<DefenseSocket> defenseSockets;
     public List<GameObject> defenses = new();
     public List<Beent> beents = new();
+
+    [Header("References")]
+    [Tooltip("Place all the sockets in this scene here")]public List<DefenseSocket> defenseSockets;
+    
 
     private void Awake()
     {
