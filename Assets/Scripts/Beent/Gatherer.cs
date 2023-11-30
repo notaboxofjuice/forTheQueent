@@ -55,6 +55,7 @@ public class Gatherer : Beent
         else if (other.CompareTag("Hive")) // in range of hive
         {
             if (heldPollen > 0) DepositPollen(); // has pollen, deposit pollen
+            ChangeState(GetComponent<FindPollen>()); // return to finding pollen
         }
         else if (other.CompareTag("Enemy")) // in range of enemy
         {
