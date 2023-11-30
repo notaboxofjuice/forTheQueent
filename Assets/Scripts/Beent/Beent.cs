@@ -20,7 +20,8 @@ public abstract class Beent : MonoBehaviour
     protected virtual void FixedUpdate() // perform current state, or do senses
     {
         if (CurrentState != null) CurrentState.UpdateState();
-        else DoSenses();
+        else if (Random.Range(0,2) == 0) ChangeState(GetComponent<FindPollen>());
+        else ChangeState(GetComponent<ReturnToHive>());
     }
     #endregion
     #region Local Operations

@@ -11,7 +11,11 @@ public class ReturnToHive : State
     }
     public override void UpdateState() // Pathfind to Hive
     {
-        return;
+        if (Random.Range(Random.Range(0, 1), 100) == 0) // 1% chance to change state
+        {
+            if (Random.Range(0, 2) == 0) daddy.ChangeState(GetComponent<FindPollen>());
+            else daddy.ChangeState(GetComponent<ReturnToHive>());
+        }
     }
     public override void ExitState()
     {
