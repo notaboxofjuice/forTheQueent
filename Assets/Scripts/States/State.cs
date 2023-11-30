@@ -1,20 +1,13 @@
 using UnityEngine;
-
+using UnityEngine.AI; // NavMeshAgent
 //Working on this script: Ky'onna
 public abstract class State : MonoBehaviour
 {
-    [SerializeField] protected Pathfinding MyPathfinder;
-    /*protected Beent beent; //reference to the beent that the state machine will manipulate, context object
-    public State(Beent beent)
-    {
-        this.beent = beent;
-    }*/
-    // unsure if the above stuff is necessary, we'll revisit later -Leeman
+    [SerializeField] protected NavMeshAgent myAgent; // NavMeshAgent reference
     private void Awake()
     {
-        MyPathfinder = GetComponent<Pathfinding>();
+        myAgent = GetComponent<NavMeshAgent>(); // Get NavMeshAgent
     }
-    protected abstract Vector3 ChooseDestination(); // Abstract because destination choosing is different for each class
     public abstract void EnterState(); // Called when a state is first entered, include logic for assigning variables and other initialization things
     public abstract void UpdateState(); // The states main functionality whether that be fleeing, processing, etc
     public abstract void ExitState(); // Any cleanup you want to do before exiting a state

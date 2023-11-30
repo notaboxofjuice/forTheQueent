@@ -32,7 +32,7 @@ public abstract class Beent : MonoBehaviour
     }
     #endregion
     #region State Machine Operations
-    protected void ChangeState(State newState)
+    public void ChangeState(State newState)
     {
         if (CurrentState != null) CurrentState.ExitState();
         CurrentState = newState;

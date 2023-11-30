@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 /// <summary>
 /// State in which Gatherer returns to Hive
 /// </summary>
@@ -7,6 +8,7 @@ public class ReturnToHive : State
     public override void EnterState()
     {
         Debug.Log(gameObject.name + " is returning to Hive");
+        ChooseDestination(); // Choose destination
     }
 
     public override void ExitState()
@@ -16,11 +18,11 @@ public class ReturnToHive : State
 
     public override void UpdateState() // Pathfind to Hive
     {
-        MyPathfinder.CalculatePath(transform.position, ChooseDestination());
+        return;
     }
 
-    protected override Vector3 ChooseDestination() // Return Hive transform
+    protected override void ChooseDestination() // Return Hive transform
     {
-        return Hive.Instance.transform.position; // Hive position
+        myAgent.SetDestination(Hive.Instance.transform.position);
     }
 }
