@@ -11,7 +11,6 @@ public class Chase : State
     public override void EnterState()
     {
         MoveSpeed = gameObject.GetComponent<Warrior>().GetMoveSpeed();
-        myAgent.SetDestination(gameObject.GetComponent<Warrior>().GetCurrentTarget());
     }
     public override void ExitState()
     {
