@@ -8,6 +8,7 @@ public class Follow : State
 {
     Warrior warrior;
     Vector3 target;
+    float followDistance = 2f;
     public override void EnterState()
     {
         warrior = daddy as Warrior;
@@ -20,7 +21,15 @@ public class Follow : State
     }
     public override void UpdateState()
     {
-        myAgent.SetDestination(target);
+        if(Vector3.Distance(target, transform.position) < followDistance)
+        {
+            myAgent.SetDestination(target);
+            myAgent.isStopped = false;
+        }
+        else
+        {
+            myAgent.isStopped = true;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
