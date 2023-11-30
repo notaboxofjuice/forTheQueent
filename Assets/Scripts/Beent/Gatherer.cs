@@ -34,9 +34,6 @@ public class Gatherer : Beent
                 if (Random.Range(0, 2) == 0) ChangeState(GetComponent<FindPollen>());
                 else ChangeState(GetComponent<ReturnToHive>());
             }
-            {
-
-            }
         }
     }
     private void OnTriggerEnter(Collider other) // object has a big sphere collider with isTrigger = true
