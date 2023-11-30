@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 /// <summary>
 /// Pollen Factory singleton that will spawn new pollen objects at a set interval,
 /// and maintains a List<Transform> of all pollen objects for Gatherers to reference
@@ -26,6 +27,12 @@ public class PollenFactory : MonoBehaviour
         while (Physics.CheckSphere(spawnPoint, SpawnRadius)) // While the spawn point is too close to other objects
         {
             spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange)); // Find a new spawn point
+                                                                                                               //check is point on nav mesh
+            if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, SpawnRadius, NavMesh.AllAreas))
+            {
+                spawnPoint = hit.position;
+            }
+            else continue;
         }
         // Return the spawn point
         return spawnPoint;

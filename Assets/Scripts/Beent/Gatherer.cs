@@ -11,6 +11,12 @@ public class Gatherer : Beent
     #region Operations
     protected override void DoSenses() // called in Beent.FixedUpdate() if current state is null
     {
+        // FOR TESTING
+        ChangeState(GetComponent<FindPollen>());
+        return;
+
+
+
         if (heldPollen == maxPollen) ChangeState(GetComponent<ReturnToHive>()); // if full, return to hive
         else // decide to Find Pollen or Return To Hive
         {
