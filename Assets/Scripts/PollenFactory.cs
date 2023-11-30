@@ -24,21 +24,20 @@ public class PollenFactory : MonoBehaviour
     {
         // Find a random point in the spawn range
         Vector3 spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange));
-        while (!Physics.CheckSphere(spawnPoint, SpawnRadius)) // While the spawn point is hitting nothing
+        // Check if the spawn point is on the navmesh
+        if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, SpawnRadius, NavMesh.AllAreas))
         {
-            spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange)); // Find a new spawn point
-            //check is point on nav mesh
-            if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, SpawnRadius, NavMesh.AllAreas))
-            {
-                spawnPoint = hit.position;
-                // Move the spawn point up to the height of the terrain
-                spawnPoint.y = Terrain.activeTerrain.SampleHeight(spawnPoint);
-                spawnPoint.y += 8;
-            }
-            else continue;
+            // If yes, return the hit position
+            spawnPoint = hit.position;
+            spawnPoint.y += 8;
+            // Return the spawn point
+            return spawnPoint;
         }
-        // Return the spawn point
-        return spawnPoint;
+        else
+        {
+            // If not, find a new spawn point
+            return FindSpawnPoint();
+        }
     }
     IEnumerator SpawnPollen() // Coroutine to spawn new pollen objects
     {

@@ -11,17 +11,12 @@ public class Gatherer : Beent
     #region Operations
     protected override void DoSenses() // called in Beent.FixedUpdate() if current state is null
     {
-        // FOR TESTING
-        ChangeState(GetComponent<FindPollen>());
-
+        if (Random.Range(0,2) == 0) ChangeState(GetComponent<FindPollen>());
+        else ChangeState(GetComponent<ReturnToHive>());
+        return;
         if (heldPollen == maxPollen) ChangeState(GetComponent<ReturnToHive>()); // if full, return to hive
         else // decide to Find Pollen or Return To Hive
         {
-            /// TESTING
-            // 50/50 chance to switch to either state
-            if (Random.Range(0, 2) == 0) ChangeState(GetComponent<FindPollen>());
-            else ChangeState(GetComponent<ReturnToHive>());
-            return;
             // check populations
             int WarriorCount = Hive.Instance.CountBeentsByType(BeentEnums.BeentType.Warrior);
             int WorkerCount = Hive.Instance.CountBeentsByType(BeentEnums.BeentType.Worker);

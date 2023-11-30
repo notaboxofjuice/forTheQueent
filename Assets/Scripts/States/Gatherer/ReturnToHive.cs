@@ -4,17 +4,21 @@ using UnityEngine;
 /// </summary>
 public class ReturnToHive : State
 {
+    private float maxTime = 15f;
+    private float timer = 0f;
     public override void EnterState()
     {
         Debug.Log(gameObject.name + " is returning to Hive");
         myAgent.SetDestination(Hive.Instance.transform.position); // pathfind to Hive
+        timer = maxTime;
     }
     public override void UpdateState() // Pathfind to Hive
     {
-        if (Random.Range(Random.Range(0, 1), 100) == 0) // 1% chance to change state
+        if (timer > 0) timer -= Time.deltaTime;
+        else
         {
-            if (Random.Range(0, 2) == 0) daddy.ChangeState(GetComponent<FindPollen>());
-            else daddy.ChangeState(GetComponent<ReturnToHive>());
+            ExitState();
+            return;
         }
     }
     public override void ExitState()
