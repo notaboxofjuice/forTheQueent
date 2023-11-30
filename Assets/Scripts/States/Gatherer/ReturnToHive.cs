@@ -15,6 +15,7 @@ public class ReturnToHive : State
     }
     public override void ExitState()
     {
+        base.ExitState();
         Debug.Log(gameObject.name + " is not returning to Hive");
     }
 }
