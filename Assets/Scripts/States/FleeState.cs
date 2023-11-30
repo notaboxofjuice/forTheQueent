@@ -8,7 +8,6 @@ using UnityEngine.AI;
 public class FleeState : State
 {
     private Transform threatBeent; //transform of the current threat
-    private Vector3 fleeLocation;
     
     [SerializeField] float MoveSpeed = 10;
 
@@ -18,12 +17,9 @@ public class FleeState : State
     [Tooltip("Radius that a random flee point is generated")]
     [SerializeField] float fleeRadius;
 
-    bool calculatedInitialPath;
-
     public override void EnterState()
     {
         //Set the move speed
-        calculatedInitialPath = false;
         Debug.Log(gameObject.name + " is fleeing");
     }
 
@@ -42,6 +38,7 @@ public class FleeState : State
 
         // Ensure the point is on the NavMesh, if not exit the function and try again
         NavMeshHit hit;
+        
         if (NavMesh.SamplePosition(randomPoint, out hit, fleeRadius, NavMesh.AllAreas))
         {
             randomPoint = hit.position;
@@ -62,5 +59,15 @@ public class FleeState : State
             //assign the threat beent
             threatBeent = other.gameObject.transform;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //if the threat beent is no longer there 
+        if (other.gameObject.transform == threatBeent)
+        {
+            ExitState();
+        }
+        
     }
 }

@@ -28,20 +28,20 @@ public class BuildWalls : State
         if (socket != null)
         {
             //path find to the location of the socket
-            MyPathfinder.CalculatePath(transform.position, ChooseDestination());
+            myAgent.SetDestination(socket.transform.position);
 
-            if (Vector3.Distance(this.gameObject.transform.position, socket.gameObject.transform.position) < 1.0f)
+            if (Vector3.Distance(this.gameObject.transform.position, socket.transform.position) < wallOffset)
             {
                 //if close enough to the wall, build the wall
                 BuildDefenses(defenseObj, socket);
                 socket = null; //set socket to null so beent does not try to build another wall
             }    
         }
-    }
-
-    protected override Vector3 ChooseDestination()
-    {
-        return socket.gameObject.transform.position;
+        else
+        {
+            //leave the state because there are no valid sockets
+            ExitState();
+        }
     }
 
     private void BuildDefenses(GameObject _defensiveWall, DefenseSocket _socket)  //builds protective walls to keep Beentbarians at bay

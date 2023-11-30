@@ -33,7 +33,7 @@ public class Worker : Beent
             else if (Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
         }
 
-        //if all those statements return false we idle until they are true
+        //if all those statements return false we idle for a bit and then check back to see if they are true
         ChangeState(GetComponent<IdleRoam>());
     }
 
@@ -42,15 +42,6 @@ public class Worker : Beent
         if (other.CompareTag("Enemy")) // in range of enemy
         {
             ChangeState(GetComponent<FleeState>()); // interrupt current state and flee
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy")) // in range of enemy
-        {
-            //null the current state to trigger do senses
-            CurrentState = null;
         }
     }
 
