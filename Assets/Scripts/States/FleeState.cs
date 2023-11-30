@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 /// <summary>
 /// State for running away from enemy Beent.
 /// Probably just pick a spot in the opposite direction and pathfind there.
@@ -8,11 +9,15 @@ public class FleeState : State
 {
     private Transform threatBeent; //transform of the current threat
     private Vector3 fleeLocation;
+    
     [SerializeField] float MoveSpeed = 10;
 
     [Tooltip("Minimum distance to be considered at the flee location")]
     [SerializeField] float fleeLocationOffset;
-    
+
+    [Tooltip("Radius that a random flee point is generated")]
+    [SerializeField] float fleeRadius;
+
     bool calculatedInitialPath;
 
     public override void EnterState()
@@ -30,20 +35,24 @@ public class FleeState : State
 
     public override void UpdateState()
     {
-        StartCoroutine(FleeThreat());
-        return;  
-    }
+        //get random point in the opposite direction of the threat, but within the flee radius
+        Vector3 randomPoint = Random.insideUnitSphere * fleeRadius;
+        Vector3 oppositeDirection = -threatBeent.position;
+        randomPoint += oppositeDirection;
 
-    protected override Vector3 ChooseDestination()
-    {
-        //find transform in opposite direction of enemy
-        fleeLocation = -threatBeent.position; //not fullproof it might pick an invalid destination
+        // Ensure the point is on the NavMesh, if not exit the function and try again
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPoint, out hit, fleeRadius, NavMesh.AllAreas))
+        {
+            randomPoint = hit.position;
+        }
+        else
+        {
+            return;
+        }
 
-        /*        if (*//*invalid pos*//*)
-                {
-
-                }*/
-        return fleeLocation;
+        //Set the destination to the a flee point
+        myAgent.destination = transform.position + oppositeDirection; 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,25 +61,6 @@ public class FleeState : State
         {
             //assign the threat beent
             threatBeent = other.gameObject.transform;
-        }
-    }
-
-    IEnumerator FleeThreat()
-    {
-        yield return new WaitForFixedUpdate();
-
-        //calculate a path if neccessary
-        if(!calculatedInitialPath || Vector3.Distance(transform.position, fleeLocation) < fleeLocationOffset)
-        {
-            MyPathfinder.CalculatePath(transform.position, ChooseDestination()); //calculate path
-            calculatedInitialPath = true;
-        }
-         
-        //move to along the path
-        if (MyPathfinder.lastFoundPath != null && MyPathfinder.lastFoundPath.Count > 1)
-        {
-            //mode towards the node in the path
-            transform.position = Vector3.MoveTowards(transform.position, MyPathfinder.lastFoundPath[1].worldCoords, MoveSpeed * Time.deltaTime);
         }
     }
 }

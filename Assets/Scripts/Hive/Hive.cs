@@ -9,6 +9,7 @@ public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
     [SerializeField] int startingNectar = 100; // starting nectar
+    
     [Header("READONLY")]
     public int beentPopulation;
     public int currentPollen;
@@ -19,6 +20,7 @@ public class Hive : MonoBehaviour
 
     [Header("References")]
     [Tooltip("Place all the sockets in this scene here")]public List<DefenseSocket> defenseSockets;
+    public GameObject hivebounds;
     
 
     private void Awake()
