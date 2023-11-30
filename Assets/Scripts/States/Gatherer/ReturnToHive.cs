@@ -11,7 +11,7 @@ public class ReturnToHive : State
     }
     public override void UpdateState() // Pathfind to Hive
     {
-        myAgent.SetDestination(Hive.Instance.transform.position); // pathfind to Hive
+        return;
     }
     public override void ExitState()
     {

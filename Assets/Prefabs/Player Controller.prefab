@@ -2658,7 +2658,7 @@ MonoBehaviour:
   BeentCost: 10
   spawnPoint: {fileID: 7446253854201711378}
   gathererPrefab: {fileID: 1451067166827121602, guid: 414a75f177da63a429f5bece5c17fbca, type: 3}
-  warriorPrefab: {fileID: 3875872044857737093, guid: 76c3e5de2188a344d9635288c60170c1, type: 3}
+  warriorPrefab: {fileID: 6461184571539735477, guid: 7466cf1b5752498429a560a262f4a731, type: 3}
   workerPrefab: {fileID: 4814258761043163697, guid: 10ac4ff9faffb254a9a179d150f3ecd7, type: 3}
 --- !u!114 &2569667963255841604
 MonoBehaviour:
