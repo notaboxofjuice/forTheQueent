@@ -20,11 +20,11 @@ public class Warrior : Beent
             inCombat = true;
             Debug.Log("New Enemy Found");
         }
-        else if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Beent") && !inCombat)
+        else if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Beent") && !inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
         {
             currentTarget = other.gameObject;
             ChangeState(gameObject.GetComponent<Follow>());
-            Debug.Log("Moving to ecsort Friendly");
+            Debug.Log("Moving to ecsort Friendly");  
         }
     }
     public GameObject GetCurrentTarget()
