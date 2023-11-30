@@ -7,8 +7,6 @@ using System.Collections.Generic;
 
 public class Worker : Beent
 {
-    [SerializeField] float pollenProcessTime;
-
     private void Awake()
     {
         //initialization
