@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 409668034992448046}
   m_Layer: 0
   m_Name: Hive
-  m_TagString: Untagged
+  m_TagString: Hive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85181c1795faf034991c71c5e2cccf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingNectar: 100
   beentPopulation: 0
   currentPollen: 0
   currentNectar: 0

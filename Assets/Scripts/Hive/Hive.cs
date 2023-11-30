@@ -8,7 +8,7 @@ using BeentEnums;
 public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
-
+    [SerializeField] int startingNectar = 100; // starting nectar
     [Header("READONLY")]
     public int beentPopulation;
     public int currentPollen;
@@ -30,7 +30,7 @@ public class Hive : MonoBehaviour
 
         //Initialization
         currentPollen = 0;
-        currentNectar = 0;
+        currentNectar = startingNectar;
         beentPopulation = 0;
         maxDefenses = defenseSockets.Count; //max defenses = the number of sockets, be sure to add all existing socket to the list
     }

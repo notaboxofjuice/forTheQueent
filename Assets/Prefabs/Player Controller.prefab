@@ -357,14 +357,13 @@ GameObject:
   - component: {fileID: 4735669308677670525}
   - component: {fileID: 6405682925818894881}
   - component: {fileID: 378994562412130016}
-  - component: {fileID: 6862954462881573119}
   m_Layer: 5
   m_Name: Pause/GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &806773700706968892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -493,27 +492,37 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &6862954462881573119
-MonoBehaviour:
+--- !u!1 &2293348613634103200
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561787484124759246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17afa8dc6ff506f4aa97cc2f59fc7444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyScoreSO: {fileID: 11400000, guid: 85f4a99b580dc744f9d803a08c7f2013, type: 2}
-  PlayerInput: {fileID: 0}
-  GameUI: {fileID: 0}
-  IsPaused: 0
-  GameOver: 0
-  PauseUI: {fileID: 3870502233291208363}
-  StateText: {fileID: 5811091005165701568}
-  ScoreText: {fileID: 1126332662214931674}
-  HighScoreText: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7446253854201711378}
+  m_Layer: 0
+  m_Name: SPAWNPOINT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7446253854201711378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2293348613634103200}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468071949635731793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2793046341589841174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3172860218427084333
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2206,7 +2215,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6862954462881573119}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: QuitOrRestart
         m_Mode: 6
@@ -2339,7 +2348,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6862954462881573119}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: QuitOrRestart
         m_Mode: 6
@@ -2514,6 +2523,7 @@ GameObject:
   - component: {fileID: 1468071949635731793}
   - component: {fileID: 3833887430169641180}
   - component: {fileID: 2330488717159621133}
+  - component: {fileID: 2569667963255841604}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -2536,6 +2546,7 @@ Transform:
   m_Children:
   - {fileID: 806773700706968892}
   - {fileID: 7517951693207981267}
+  - {fileID: 7446253854201711378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3833887430169641180
@@ -2585,7 +2596,7 @@ MonoBehaviour:
     m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6862954462881573119}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: DoPause
         m_Mode: 1
@@ -2645,6 +2656,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeentCost: 10
+  spawnPoint: {fileID: 7446253854201711378}
+  gathererPrefab: {fileID: 1451067166827121602, guid: 414a75f177da63a429f5bece5c17fbca, type: 3}
+  warriorPrefab: {fileID: 3875872044857737093, guid: 76c3e5de2188a344d9635288c60170c1, type: 3}
+  workerPrefab: {fileID: 4814258761043163697, guid: 10ac4ff9faffb254a9a179d150f3ecd7, type: 3}
+--- !u!114 &2569667963255841604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406159110384051960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17afa8dc6ff506f4aa97cc2f59fc7444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyScoreSO: {fileID: 11400000, guid: 85f4a99b580dc744f9d803a08c7f2013, type: 2}
+  PlayerInput: {fileID: 3833887430169641180}
+  GameUI: {fileID: 534315437694799335}
+  IsPaused: 0
+  GameOver: 0
+  PauseUI: {fileID: 1561787484124759246}
+  StateText: {fileID: 5811091005165701568}
+  ScoreText: {fileID: 1126332662214931674}
+  HighScoreText: {fileID: 2468009470612276486}
 --- !u!1 &8977964921136463033
 GameObject:
   m_ObjectHideFlags: 0
