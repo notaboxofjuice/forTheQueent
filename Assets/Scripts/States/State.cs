@@ -12,7 +12,7 @@ public abstract class State : MonoBehaviour
     }
     public abstract void EnterState(); // Called when a state is first entered, include logic for assigning variables and other initialization things
     public abstract void UpdateState(); // The states main functionality whether that be fleeing, processing, etc
-    protected virtual void ExitState() // Any cleanup you want to do before exiting a state
+    public virtual void ExitState() // Any cleanup you want to do before exiting a state
     {
         daddy.CurrentState = null;
     }
