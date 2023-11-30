@@ -27,6 +27,7 @@ public class FleeState : State
     {
         StopAllCoroutines();
         Debug.Log(gameObject.name + " is no longer fleeing");
+        base.ExitState();
     }
 
     public override void UpdateState()
