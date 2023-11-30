@@ -7,13 +7,12 @@ public abstract class Beent : MonoBehaviour
 {
     #region Attributes
     #region Personal Attributes
-    protected Pathfinding pathfinder;
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
     public BeentType beentType;
     #endregion
     #region State Machine Attributes
-    protected State CurrentState { get; set; }
+    public State CurrentState { get; set; }
     #endregion
     #endregion
     #region Operations
