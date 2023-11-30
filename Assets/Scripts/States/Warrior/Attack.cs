@@ -22,6 +22,7 @@ public class Attack : State
     {
         base.ExitState();
         StopAllCoroutines();
+        warrior.EndCombat();
     }
     public override void UpdateState()
     {
