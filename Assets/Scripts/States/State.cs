@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI; // NavMeshAgent
-//Working on this script: Ky'onna
+//Working on this script: Ky'onna & Leeman
 public abstract class State : MonoBehaviour
 {
-    private Beent daddy; // Beent reference
+    protected Beent daddy; // Beent reference
     [SerializeField] protected NavMeshAgent myAgent; // NavMeshAgent reference
     private void Awake()
     {
