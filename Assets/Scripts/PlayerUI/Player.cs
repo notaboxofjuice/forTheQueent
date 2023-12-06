@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private void ProduceBeent(BeentType _type)
     {
         if (!CanProduce()) return; // if player can't produce, exit
-        Debug.Log("producing " + _type);
+        Debug.Log("Producing " + _type);
         GameObject _beentPrefab = ChooseBeent(_type);
         Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
     }

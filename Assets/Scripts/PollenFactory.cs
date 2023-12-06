@@ -22,20 +22,22 @@ public class PollenFactory : MonoBehaviour
     }
     private Vector3 FindSpawnPoint() // Find a random point in the game world that is not too close to other objects
     {
-        // Find a random point in the spawn range
-        Vector3 spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange));
-        while (Physics.CheckSphere(spawnPoint, SpawnRadius)) // While the spawn point is too close to other objects
+        Vector3 _spawnPoint;
+        int _attempts = 5; // Number of attempts to find a spawn point
+        do
         {
-            spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange)); // Find a new spawn point
-                                                                                                               //check is point on nav mesh
-            if (NavMesh.SamplePosition(spawnPoint, out NavMeshHit hit, SpawnRadius, NavMesh.AllAreas))
+            _attempts--; // Decrement attempts
+            // Find a new spawn point
+            _spawnPoint = new(Random.Range(-SpawnRange, SpawnRange), 0, Random.Range(-SpawnRange, SpawnRange));
+            //check is point on nav mesh
+            if (NavMesh.SamplePosition(_spawnPoint, out NavMeshHit hit, SpawnRadius, NavMesh.AllAreas))
             {
-                spawnPoint = hit.position;
+                _spawnPoint = hit.position;
             }
             else continue;
-        }
-        // Return the spawn point
-        return spawnPoint;
+        } while (Physics.CheckSphere(_spawnPoint, SpawnRadius, 8) && _attempts > 0); // While the spawn point is too close to other objects
+        return _spawnPoint; // Return the spawn point
+
     }
     IEnumerator SpawnPollen() // Coroutine to spawn new pollen objects
     {

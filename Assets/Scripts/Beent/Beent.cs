@@ -12,7 +12,7 @@ public abstract class Beent : MonoBehaviour
     public BeentType beentType;
     #endregion
     #region State Machine Attributes
-    public State CurrentState { get; set; }
+    public State CurrentState;
     #endregion
     #endregion
     #region Operations

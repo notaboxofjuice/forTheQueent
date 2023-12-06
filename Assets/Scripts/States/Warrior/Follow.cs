@@ -11,7 +11,7 @@ public class Follow : State
     float followDistance = 2f;
     public override void EnterState()
     {
-        warrior = daddy as Warrior;
+        warrior = Daddy as Warrior;
         target = warrior.GetCurrentTarget().transform.position;
         myAgent.speed = warrior.GetMoveSpeed();
     }

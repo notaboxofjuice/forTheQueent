@@ -16,6 +16,7 @@ public class CameraOffset : MonoBehaviour
     [SerializeField] float minFollowDist;
     [Tooltip("The minimum height the camera can be")]
     [SerializeField] float minHeight;
+    private float currentHeight; // tracking current height of camera
     [Tooltip("The maximum height the camera can be")]
     [SerializeField] float maxHeight;
     [Tooltip("The time it takes for the camera to reach its target position")]
@@ -33,18 +34,25 @@ public class CameraOffset : MonoBehaviour
         Vector3 _avgPos = AvgPos();
         // Calculate the target position and offset and clamp the height
         Vector3 _targetPos = _avgPos + (Vector3.up * minHeight) - (primaryTarget.forward * minFollowDist);
-        _targetPos.y = Mathf.Clamp(_targetPos.y, minHeight, maxHeight);
+        _targetPos.y = Mathf.Clamp(currentHeight, minHeight, maxHeight);
         // Perform movement and rotation
         transform.SetPositionAndRotation(Vector3.SmoothDamp(transform.position, _targetPos, ref velocity, smoothTime), Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_avgPos - transform.position), smoothTime));
     }
     private Vector3 AvgPos()
     {
-        Vector3 _avgPosition = Vector3.zero;
+        Vector3 _avgPosition = Vector3.zero; // The average position of all targets
+        float _greatestDist = 0; // The greatest distance between the primary target and any other target
         foreach (Transform _transform in targetTransforms)
         {
             _avgPosition += _transform.position;
+            foreach (Transform _otherTransform in targetTransforms)
+            {
+                float _dist = Vector3.Distance(primaryTarget.position, _otherTransform.position);
+                if (_dist > _greatestDist) _greatestDist = _dist;
+            }
         }
+        currentHeight = _greatestDist;
         return _avgPosition / targetTransforms.Count;
     }
-#endregion
+    #endregion
 }

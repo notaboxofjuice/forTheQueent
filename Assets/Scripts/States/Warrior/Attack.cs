@@ -14,7 +14,7 @@ public class Attack : State
     [SerializeField] protected float attackRange = 1f;
     public override void EnterState()
     {
-        warrior = daddy as Warrior;
+        warrior = Daddy as Warrior;
         target = warrior.GetCurrentTarget().transform.position;
         myAgent.speed = warrior.GetMoveSpeed();
     }

@@ -21,7 +21,7 @@ public class FindPollen : State
     public override void UpdateState()
     {
         if (PollenFactory.PollenList.Count == 0) ExitState(); // if no pollen, exit state
-        if (TargetPollen != null && !PollenFactory.PollenList.Contains(TargetPollen))
+        if (TargetPollen != null || !PollenFactory.PollenList.Contains(TargetPollen))
         {
             TargetPollen = LookForPollen(); // if pollen is destroyed, find new pollen
         }

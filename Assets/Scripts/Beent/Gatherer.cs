@@ -6,17 +6,11 @@ public class Gatherer : Beent
 {
     #region Attributes
     [SerializeField] int maxPollen;
-    [SerializeField] int heldPollen;
+    public int heldPollen;
     #endregion
     #region Operations
     protected override void DoSenses() // called in Beent.FixedUpdate() if current state is null
     {
-        // FOR TESTING
-        ChangeState(GetComponent<FindPollen>());
-        return;
-
-
-
         if (heldPollen == maxPollen) ChangeState(GetComponent<ReturnToHive>()); // if full, return to hive
         else // decide to Find Pollen or Return To Hive
         {
@@ -35,10 +29,10 @@ public class Gatherer : Beent
                 if (Random.Range(0, BeentCount) < WorkerCount) ChangeState(GetComponent<ReturnToHive>());
                 else ChangeState(GetComponent<FindPollen>());
             }
-            else // equal populations, 50/50 chance to switch to either state
+            else
             {
-                if (Random.Range(0, 2) == 0) ChangeState(GetComponent<FindPollen>());
-                else ChangeState(GetComponent<ReturnToHive>());
+                if (Random.Range(0, 2) == 0) ChangeState(GetComponent<ReturnToHive>()); // equal number of workers and warriors, switch to ReturnToHive state
+                else ChangeState(GetComponent<FindPollen>()); // equal number of workers and warriors, switch to FindPollen state
             }
         }
     }
@@ -53,6 +47,7 @@ public class Gatherer : Beent
         else if (other.CompareTag("Hive")) // in range of hive
         {
             if (heldPollen > 0) DepositPollen(); // has pollen, deposit pollen
+            ChangeState(GetComponent<FindPollen>()); // return to finding pollen
         }
         else if (other.CompareTag("Enemy")) // in range of enemy
         {

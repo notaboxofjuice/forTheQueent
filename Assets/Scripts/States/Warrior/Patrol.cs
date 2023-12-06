@@ -9,7 +9,7 @@ public class Patrol : State
     Warrior warrior;
     public override void EnterState()
     {
-        warrior = daddy as Warrior;
+        warrior = Daddy as Warrior;
         myAgent.speed = warrior.GetMoveSpeed();
     }
     public override void ExitState()
