@@ -14,23 +14,29 @@ public class Player : MonoBehaviour
     public void ProduceGatherer() => ProduceBeent(BeentType.Gatherer); // Produce a gatherer
     public void ProduceWarrior() => ProduceBeent(BeentType.Warrior); // Produce a warrior
     public void ProduceWorker() => ProduceBeent(BeentType.Worker); // Produce a worker
-    private void ProduceBeent(BeentType type)
+    private void ProduceBeent(BeentType _type)
     {
         if (!CanProduce()) return; // if player can't produce, exit
-        Debug.Log("producing " + type);
-        // switch statement to pick the beent to instantiate
+        Debug.Log("producing " + _type);
+        GameObject _beentPrefab = ChooseBeent(_type);
+        Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
+    }
+    private GameObject ChooseBeent(BeentType type)
+    {
+        GameObject _beentPrefab = null;
         switch (type)
         {
             case BeentType.Gatherer:
-                Instantiate(gathererPrefab, spawnPoint.position, Quaternion.identity);
+                _beentPrefab = gathererPrefab;
                 break;
             case BeentType.Warrior:
-                Instantiate(warriorPrefab, spawnPoint.position, Quaternion.identity);
+                _beentPrefab = warriorPrefab;
                 break;
             case BeentType.Worker:
-                Instantiate(workerPrefab, spawnPoint.position, Quaternion.identity);
+                _beentPrefab = workerPrefab;
                 break;
         }
+        return _beentPrefab;
     }
     private bool CanProduce()
     {

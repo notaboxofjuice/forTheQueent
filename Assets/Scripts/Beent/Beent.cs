@@ -17,10 +17,18 @@ public abstract class Beent : MonoBehaviour
     #endregion
     #region Operations
     #region Unity Operations
+    private void Start()
+    {
+        Camera.main.GetComponent<CameraOffset>().targetTransforms.Add(transform); // add this transform to the camera offset script
+    }
     protected virtual void FixedUpdate() // perform current state, or do senses
     {
         if (CurrentState != null) CurrentState.UpdateState();
         else DoSenses();
+    }
+    private void OnDestroy()
+    {
+        Camera.main.GetComponent<CameraOffset>().targetTransforms.Remove(transform); // remove this transform from the camera offset script
     }
     #endregion
     #region Local Operations
