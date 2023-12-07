@@ -22,5 +22,4 @@ public class ReturnToHive : State
         Father.heldPollen = 0; // empty pollen
         UI.GathererProductivity++; // Increment the gatherer productivity for score calculation
     }
-
 }
