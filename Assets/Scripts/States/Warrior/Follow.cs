@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class Follow : State
 {
@@ -36,6 +36,7 @@ public class Follow : State
         if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Enemy"))
         {
             warrior.SetTarget(other.gameObject);
+            warrior.StartCombat();
             warrior.ChangeState(GetComponent<Attack>());
         }
     }

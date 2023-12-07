@@ -44,16 +44,8 @@ public class Attack : State
         }
     }
     IEnumerator AttackEnemy()
-    {
-        gameObject.GetComponent<BoxCollider>().enabled = true;
+    {  
+        warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
         yield return new WaitForSeconds(attackSpeed);
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(GetComponent<Collider>() is BoxCollider && other.gameObject.CompareTag("Enemy"))
-        {
-            other.gameObject.GetComponent<Beentbarian>().TakeDamage(attackDamage);
-        }
     }
 }

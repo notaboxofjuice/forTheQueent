@@ -5,18 +5,12 @@ using UnityEngine;
 public class Warrior : Beent
 {
     protected GameObject currentTarget;
-    protected bool inCombat = false;
+    public bool inCombat = false;
 
     [SerializeField] GameObject DEBUGTARGET;
 
     protected override void DoSenses() // look for events and trigger transitions
     {
-        // TESTING
-        ChangeState(GetComponent<Follow>());
-        return;
-
-
-
         ChangeState(gameObject.GetComponent<Patrol>());
     }
     private void OnTriggerEnter(Collider other)
@@ -37,7 +31,6 @@ public class Warrior : Beent
     }
     public GameObject GetCurrentTarget()
     { 
-        return DEBUGTARGET;
         return currentTarget;
     }
     public float GetMoveSpeed()
@@ -48,6 +41,10 @@ public class Warrior : Beent
     {
         inCombat = false;
         currentTarget = null;
+    }
+    public void StartCombat()
+    {
+        inCombat = true;
     }
     public void SetTarget(GameObject target) 
     {
