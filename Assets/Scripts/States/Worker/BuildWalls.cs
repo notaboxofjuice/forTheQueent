@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 //Working on this script: Ky'onna
 public class BuildWalls : State
 {
     [SerializeField] GameObject defenseObj;
     [SerializeField] float wallBuildCooldown;
-    private bool canBuild;
+    [SerializeField] NavMeshSurface[] navMeshes;
+    private bool canBuild = true;
     private DefenseSocket socket;
     public override void EnterState()
     {
-        canBuild = true;
         socket = null;
         Debug.Log("Building walls.");
     }
@@ -29,17 +31,19 @@ public class BuildWalls : State
         if(socket == null && canBuild)
         {
             socket = FindValidWallSocket();
-
+        }
+        else if(canBuild)
+        {
             //path find to the location of the socket
             myAgent.SetDestination(socket.transform.position);
-            
+
             if (Vector3.Distance(this.gameObject.transform.position, socket.transform.position) < myAgent.stoppingDistance)
             {
                 //if close enough to the wall, build the wall
                 BuildDefenses(defenseObj, socket);
                 socket = null; //set socket to null so beent does not try to build another wall
+                ExitState(); //exist the state to trigger do senses, checking the condition of the nest
             }
-
         }
     }
 
@@ -59,10 +63,13 @@ public class BuildWalls : State
         wall.GetComponent<DefenseObj>().myDefenseSocket = _socket;
 
         //Assign as a child of the hive, this will make tracking the wallNum easier because it can count Children of type Wall
-        wall.transform.SetParent(Hive.Instance.transform, false);
+        wall.transform.SetParent(Hive.Instance.transform, true);
 
         //Update the defense obj list
         Hive.Instance.AddDefence(wall);
+
+        //update the nav mesh
+        UpdateNavMeshes();
 
         //start cooldown
         canBuild = false;
@@ -96,6 +103,7 @@ public class BuildWalls : State
             int randInt = Random.Range(0, sockets.Count);
             sockets[randInt].isOccupied = true;
             defenseSocket = sockets[randInt];
+            Debug.Log("Found a socket: " + defenseSocket);
             return defenseSocket;
         }
     }
@@ -104,5 +112,17 @@ public class BuildWalls : State
     {
         yield return new WaitForSeconds(wallBuildCooldown);
         canBuild = true;
+    }
+
+    private void UpdateNavMeshes()
+    {
+        Debug.Log("Updating Navmesh");
+
+        NavMeshData data;
+        foreach(NavMeshSurface surface in navMeshes)
+        {
+            data = surface.navMeshData;
+            surface.UpdateNavMesh(data);
+        }
     }
 }

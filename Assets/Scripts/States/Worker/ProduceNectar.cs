@@ -5,10 +5,8 @@ using UnityEngine;
 //Working on this script: Ky'onna
 public class ProduceNectar : State
 {
-    [SerializeField] GameObject pollenStorage;
-    [SerializeField] float processColldownTime;
+    [SerializeField] float processCooldownTime;
     private bool canProcess;
-    private float pollenStorageOffset;
     
     public override void EnterState()
     {
@@ -58,7 +56,7 @@ public class ProduceNectar : State
 
     private IEnumerator ProcessCooldown()
     {
-       yield return new WaitForSeconds(processColldownTime);
+       yield return new WaitForSeconds(processCooldownTime);
         canProcess = true;
     }
 

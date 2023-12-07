@@ -11,9 +11,6 @@ public class FleeState : State
 
     private Transform threatBeent; //transform of the current threat
 
-    [Tooltip("Minimum distance to be considered at the flee location")]
-    [SerializeField] float fleeLocationOffset;
-
     [Tooltip("Radius that a random flee point is generated")]
     [SerializeField] float fleeRadius;
 
