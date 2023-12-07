@@ -14,6 +14,8 @@ public class Patrol : State
     List<Vector3> patrolPoints;
     int pointIndex;
     bool hasArrived;
+    float timer;
+    float tryTime = 10f;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
@@ -34,6 +36,7 @@ public class Patrol : State
         pointIndex = 0;
         Vector3 patrolPoint;
         hasArrived = true;
+        timer = 0;
         while(patrolPoints.Count < 5)
         {
             int _attempts = 5; // Number of attempts to find a spawn point
@@ -46,6 +49,7 @@ public class Patrol : State
                 if (NavMesh.SamplePosition(patrolPoint, out NavMeshHit hit, spawnRadius, NavMesh.AllAreas))
                 {
                     patrolPoints.Add(hit.position);
+                    Debug.Log(hit.position);
                 }
                 else continue;
             } while (Physics.CheckSphere(patrolPoint, spawnRadius, 8) && _attempts > 0); // While the spawn point is too close to other objects
@@ -53,10 +57,11 @@ public class Patrol : State
     }
     void FollowPatrolPath()
     {
-        if (hasArrived)
+        if(hasArrived)
         {
             hasArrived = false;
-            myAgent.SetDestination(patrolPoints[pointIndex]);
+            myAgent.ResetPath(); 
+            timer = 0;
             if (pointIndex < patrolPoints.Count - 1)
             {
                 pointIndex++;
@@ -65,12 +70,18 @@ public class Patrol : State
             {
                 pointIndex = 0;
             }
-        }  
-        Debug.Log("Moving to coordinates: " + myAgent.pathEndPosition);
-        Debug.Log("remaining distance to point: " + myAgent.remainingDistance);
-        if(myAgent.remainingDistance <= myAgent.stoppingDistance)
+            myAgent.SetDestination(patrolPoints[pointIndex]);
+        }
+        else
         {
-            hasArrived = true;
+            Debug.Log("Attempting to move to index: " + pointIndex);
+            Debug.Log(hasArrived);
+            if (myAgent.remainingDistance <= myAgent.stoppingDistance || timer > tryTime)
+            {
+                hasArrived = true;
+            }
+            timer += Time.deltaTime;
+            Debug.Log("Warrior has been trying to follow path for: " + Mathf.Round(timer) + " Seconds");
         }
     }
     private void OnTriggerEnter(Collider other)
