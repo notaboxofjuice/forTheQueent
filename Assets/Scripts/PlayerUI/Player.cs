@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         GameObject _beentPrefab = ChooseBeent(_type);
         GameObject newBeent = Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
         newBeent.transform.SetParent(beentHolder.transform); //put beents into the holder
-        Hive.Instance.AddBeentToPopulation(_beentPrefab.GetComponent<Beent>()); //update beent list
+        Hive.Instance.AddBeentToPopulation(newBeent.GetComponent<Beent>()); //update beent list
 
     }
     private GameObject ChooseBeent(BeentType type)

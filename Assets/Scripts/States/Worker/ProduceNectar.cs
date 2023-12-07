@@ -29,6 +29,7 @@ public class ProduceNectar : State
             if (canProcess && Hive.Instance.CurrentPollen > 0)
             {
                 ProcessPollen();
+                ExitState(); //exit state to trigger DoSenses and assess nest state
             }
             else if(Hive.Instance.CurrentPollen <= 0)
             {

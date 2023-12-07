@@ -21,6 +21,16 @@ public abstract class Beent : MonoBehaviour
     {
         Camera.main.GetComponent<CameraOffset>().targetTransforms.Add(transform); // add this transform to the camera offset script
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("removing self from list");
+        //Remove this beent from the list
+        Hive.Instance.beents.Remove(this);
+
+        //Update the beent count
+        Hive.Instance.beentPopulation = Hive.Instance.CountAllBeents();
+    }
     protected virtual void FixedUpdate() // perform current state, or do senses
     {
         if (CurrentState != null) CurrentState.UpdateState();
