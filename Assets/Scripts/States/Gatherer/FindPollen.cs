@@ -10,6 +10,7 @@ public class FindPollen : State
         Debug.Log(gameObject.name + " is looking for pollen");
         TargetPollen = LookForPollen(); // find nearest pollen
         if (TargetPollen != null) myAgent.SetDestination(TargetPollen.transform.position); // pathfind to nearest pollen
+        Invoke(nameof(ExitState), 60); // exit state after 60 seconds
     }
 
     public override void ExitState()
