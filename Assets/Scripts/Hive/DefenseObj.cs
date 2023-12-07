@@ -10,6 +10,9 @@ public class DefenseObj : MonoBehaviour
     [HideInInspector] public int currentHealth;
     [SerializeField] int maxHealth;
     [SerializeField] float damageCooldown;
+
+    [Tooltip("Health loss rate per cooldown")]
+    [SerializeField] int deteriorateRate;
     private bool canTakeDamage;
 
     private void Start()
@@ -18,14 +21,27 @@ public class DefenseObj : MonoBehaviour
         canTakeDamage = true;
     }
 
+    private void Update()
+    {
+        TakeDamage(deteriorateRate);
+    }
+
     public void TakeDamage(int _damageAmount)
     {
-        //take damage
-        currentHealth =- _damageAmount;
+        if (canTakeDamage)
+        {
+            //take damage
+            currentHealth = -_damageAmount;
 
-        //start the cooldown, so we don't take repeated damage
-        canTakeDamage = false;
-        StartCoroutine(DamageCooldown());
+            //start the cooldown, so we don't take repeated damage
+            canTakeDamage = false;
+            StartCoroutine(DamageCooldown());
+
+            if (currentHealth <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     IEnumerator DamageCooldown()

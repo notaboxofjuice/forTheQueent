@@ -50,9 +50,22 @@ public class Worker : Beent
                 return;
             }
         }
-
-        //if all those statements return false we idle for a bit and then check back to see if they are true
-        ChangeState(GetComponent<IdleRoam>());
+        else
+        {
+            int randInt = Random.Range(0, 3);
+            switch (randInt)
+            {
+                case 0:
+                    ChangeState(GetComponent<ProduceNectar>());
+                    break;
+                case 1:
+                    ChangeState(GetComponent<BuildWalls>());
+                    break;
+                case 2:
+                    ChangeState(GetComponent<IdleRoam>());
+                    break;
+            }
+        }
 
     }
 
