@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3695403194765845934, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_Name
       value: Gatherer
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7026157872003981512, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -89,6 +97,7 @@ MonoBehaviour:
   CurrentHealth: 10
   MoveSpeed: 15
   beentType: 1
+  CurrentState: {fileID: 0}
   maxPollen: 10
   heldPollen: 0
 --- !u!114 &8999665960865453101
@@ -103,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366da832fde45244858a28f0bef7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 8613757091020027905}
   MoveSpeed: 10
   fleeLocationOffset: 0
+  fleeRadius: 0
 --- !u!114 &333731290426300457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca736ac5be547e4bb6f645401051d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 8613757091020027905}
 --- !u!114 &5722057010433877532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,15 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d51d030800ecc4d920137fb536ee47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 8613757091020027905}
---- !u!114 &8613757091020027905 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6653617620533090530, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
-  m_PrefabInstance: {fileID: 3160492946259157219}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451067166827121602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b18c18c9404a54d976bccd0c683eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  TargetPollen: {fileID: 0}
