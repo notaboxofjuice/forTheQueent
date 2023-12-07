@@ -48,6 +48,8 @@ public class PollenFactory : MonoBehaviour
             GameObject newPollen = Instantiate(PollenPrefab, _spawnHere, Quaternion.identity);
             // Add new pollen object to PollenList
             PollenList.Add(newPollen);
+            //make the pollen object a child of this object, for organization
+            newPollen.transform.SetParent(this.gameObject.transform);
             // Wait for the SpawnCooldown before spawning another pollen object
             yield return new WaitForSeconds(SpawnCooldown);
         }

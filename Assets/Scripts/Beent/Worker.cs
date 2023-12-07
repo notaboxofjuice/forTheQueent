@@ -35,8 +35,9 @@ public class Worker : Beent
             else if (Hive.Instance.CurrentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
         }
 
+
         //if all those statements return false we idle for a bit and then check back to see if they are true
-        ChangeState(GetComponent<IdleRoam>());
+        //ChangeState(GetComponent<IdleRoam>());
     }
 
     private void OnTriggerEnter(Collider other)
