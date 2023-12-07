@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6298948647752858830, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.42
       objectReference: {fileID: 0}
     - target: {fileID: 6298948647752858830, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6298948647752858830, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.35
       objectReference: {fileID: 0}
     - target: {fileID: 6298948647752858830, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7026157872003981512, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76,17 +80,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8211069196910878418}
   m_SourcePrefab: {fileID: 100100000, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
---- !u!114 &2406788483038087666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6653617620533090530, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
-  m_PrefabInstance: {fileID: 9020926273347326224}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4814258761043163697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b18c18c9404a54d976bccd0c683eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4814258761043163697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
@@ -107,7 +100,9 @@ MonoBehaviour:
   CurrentHealth: 5
   MoveSpeed: 5
   beentType: 0
-  pollenProcessTime: 0
+  CurrentState: {fileID: 0}
+  defaultSpeed: 5
+  runSpeed: 10
 --- !u!114 &3496342517054987638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366da832fde45244858a28f0bef7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 2406788483038087666}
-  MoveSpeed: 10
+  worker: {fileID: 6704244128081501702}
   fleeLocationOffset: 2
+  fleeRadius: 10
 --- !u!114 &5756170700928041778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59608588cd62d0c4585c38463ed0faaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 2406788483038087666}
   defenseObj: {fileID: 6518402975294987331, guid: 685235829cbb5ad4b9567c78aca638d6, type: 3}
   wallOffset: 2
 --- !u!114 &5171421415292582733
@@ -150,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65b9da59a79c064abc817fe486443e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 2406788483038087666}
   pollenStorage: {fileID: 0}
   processColldownTime: 1
 --- !u!114 &8211069196910878418
@@ -165,4 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84503216f3179fb46a6bab29ef3cef8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyPathfinder: {fileID: 2406788483038087666}
+  worker: {fileID: 6704244128081501702}
+  roamPointRadius: 20
+  roamPointOffset: 1
+  roamDuration: 10

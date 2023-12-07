@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class Worker : Beent
 {
+    public float defaultSpeed;
+    public float runSpeed;
     private void Awake()
     {
         //initialization
