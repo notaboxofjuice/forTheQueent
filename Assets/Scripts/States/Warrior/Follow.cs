@@ -21,14 +21,13 @@ public class Follow : State
     }
     public override void UpdateState()
     {
-        if(Vector3.Distance(target, transform.position) < followDistance)
+        if(Vector3.Distance(target, transform.position) <= myAgent.stoppingDistance)
         {
             myAgent.SetDestination(target);
-            myAgent.isStopped = false;
         }
         else
         {
-            myAgent.isStopped = true;
+            myAgent.ResetPath();
         }
     }
     private void OnTriggerEnter(Collider other)
