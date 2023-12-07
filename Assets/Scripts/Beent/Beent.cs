@@ -26,10 +26,6 @@ public abstract class Beent : MonoBehaviour
         if (CurrentState != null) CurrentState.UpdateState();
         else DoSenses();
     }
-    private void OnDestroy()
-    {
-        Camera.main.GetComponent<CameraOffset>().targetTransforms.Remove(transform); // remove this transform from the camera offset script
-    }
     #endregion
     #region Local Operations
     public void TakeDamage(int damage)
