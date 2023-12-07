@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PollenPrefab: {fileID: 7864402195673631806, guid: 2f47375211f7da94e92cec63f77a7e3f, type: 3}
   MaxPollen: 64
-  PollenList: []
-  SpawnCooldown: 12
+  SpawnCooldown: 1
   SpawnRadius: 4
-  SpawnRange: 128
+  SpawnRange: 32

@@ -15,9 +15,8 @@ public class FindPollen : State
     public override void ExitState()
     {
         base.ExitState();
-        Debug.Log(gameObject.name + " is not looking for pollen");
+        TargetPollen = null;
     }
-
     public override void UpdateState()
     {
         if (PollenFactory.PollenList.Count == 0) ExitState(); // if no pollen, exit state
@@ -33,6 +32,7 @@ public class FindPollen : State
             ExitState(); // if no pollen, exit state
             return null;
         }
+        if (Random.Range(0, 2) == 0) return PollenFactory.PollenList[Random.Range(0, PollenFactory.PollenList.Count)]; // 50% chance to return random pollen (to prevent all gatherers from going to the same pollen
         // Set closestPollen to first pollen in list
         GameObject closestPollen = PollenFactory.PollenList[0];
         // Loop through PollenFactory.PollenList

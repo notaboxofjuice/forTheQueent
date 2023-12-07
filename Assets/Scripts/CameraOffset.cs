@@ -29,7 +29,7 @@ public class CameraOffset : MonoBehaviour
         if (!targetTransforms.Contains(primaryTarget)) targetTransforms.Add(primaryTarget); // If the target list does not include the primary target, add it
         transform.parent = null; // Unparent the camera from the player. Allows for packaging camera with another prefab
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         Vector3 _avgPos = AvgPos();
         // Calculate the target position and offset and clamp the height

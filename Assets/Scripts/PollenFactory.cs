@@ -34,17 +34,18 @@ public class PollenFactory : MonoBehaviour
             {
                 _spawnPoint = hit.position;
             }
-            else continue;
+            else _spawnPoint = Vector3.zero;
         } while (Physics.CheckSphere(_spawnPoint, SpawnRadius, 8) && _attempts > 0); // While the spawn point is too close to other objects
         return _spawnPoint; // Return the spawn point
-
     }
     IEnumerator SpawnPollen() // Coroutine to spawn new pollen objects
     {
         while (PollenList.Count < MaxPollen) // While there are less than MaxPollen pollen objects in the game world
         {
             // Instantiate new pollen object in a random spot
-            GameObject newPollen = Instantiate(PollenPrefab, FindSpawnPoint(), Quaternion.identity);
+            Vector3 _spawnHere = FindSpawnPoint();
+            if (_spawnHere == Vector3.zero) continue;
+            GameObject newPollen = Instantiate(PollenPrefab, _spawnHere, Quaternion.identity);
             // Add new pollen object to PollenList
             PollenList.Add(newPollen);
             // Wait for the SpawnCooldown before spawning another pollen object

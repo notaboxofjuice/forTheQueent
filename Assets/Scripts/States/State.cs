@@ -13,6 +13,8 @@ public abstract class State : MonoBehaviour
     public abstract void UpdateState(); // The states main functionality whether that be fleeing, processing, etc
     public virtual void ExitState() // Any cleanup before exiting a state. Remember to do base.ExitState() if you override this method
     {
+        Debug.Log(gameObject.name + " is exiting " + this);
         Daddy.CurrentState = null;
+        //myAgent.ResetPath();
     }
 }
