@@ -13,6 +13,7 @@ public class Patrol : State
     float spawnRadius = 1f;
     List<Vector3> patrolPoints;
     int pointIndex;
+    bool hasArrived;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
@@ -29,9 +30,10 @@ public class Patrol : State
     }
     void SetUpPatrol()
     {
-        patrolPoints.Clear();
+        patrolPoints = new List<Vector3>();
         pointIndex = 0;
         Vector3 patrolPoint;
+        hasArrived = true;
         while(patrolPoints.Count < 5)
         {
             int _attempts = 5; // Number of attempts to find a spawn point
@@ -51,10 +53,11 @@ public class Patrol : State
     }
     void FollowPatrolPath()
     {
-        myAgent.SetDestination(patrolPoints[pointIndex]);
-        if(myAgent.remainingDistance <= 1f)
+        if (hasArrived)
         {
-            if(pointIndex < patrolPoints.Count - 1)
+            hasArrived = false;
+            myAgent.SetDestination(patrolPoints[pointIndex]);
+            if (pointIndex < patrolPoints.Count - 1)
             {
                 pointIndex++;
             }
@@ -62,6 +65,12 @@ public class Patrol : State
             {
                 pointIndex = 0;
             }
+        }  
+        Debug.Log("Moving to coordinates: " + myAgent.pathEndPosition);
+        Debug.Log("remaining distance to point: " + myAgent.remainingDistance);
+        if(myAgent.remainingDistance <= myAgent.stoppingDistance)
+        {
+            hasArrived = true;
         }
     }
     private void OnTriggerEnter(Collider other)
