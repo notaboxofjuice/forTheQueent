@@ -6,9 +6,6 @@ public class Warrior : Beent
 {
     protected GameObject currentTarget;
     public bool inCombat = false;
-
-    [SerializeField] GameObject DEBUGTARGET;
-
     protected override void DoSenses() // look for events and trigger transitions
     {
         ChangeState(gameObject.GetComponent<Patrol>());

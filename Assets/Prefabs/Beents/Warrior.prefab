@@ -72,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5777661471375448301}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8174897185869926721}
   m_SourcePrefab: {fileID: 100100000, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
 --- !u!1 &6461184571539735477 stripped
 GameObject:
@@ -93,6 +96,8 @@ MonoBehaviour:
   CurrentHealth: 15
   MoveSpeed: 10
   beentType: 2
+  CurrentState: {fileID: 0}
+  inCombat: 0
 --- !u!65 &3147934949846057397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50d2a320c988b428d5ed3e93f68505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAgent: {fileID: 0}
   attackSpeed: 1
   attackDamage: 1
   attackRange: 1
@@ -142,4 +146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2ac6e09a7715344a6f7ec94354cad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAgent: {fileID: 0}
+--- !u!114 &-8174897185869926721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461184571539735477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6da6faaa80871d4782b0b389ddb9d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
