@@ -7,10 +7,13 @@ using UnityEngine;
 public class BuildWalls : State
 {
     [SerializeField] GameObject defenseObj;
-   [Tooltip("Minimum distance to be considered at the wall socket")] [SerializeField] float wallOffset;
+    [SerializeField] float wallBuildCooldown;
+    private bool canBuild;
     private DefenseSocket socket;
     public override void EnterState()
     {
+        canBuild = true;
+        socket = null;
         Debug.Log("Building walls.");
     }
 
@@ -22,26 +25,21 @@ public class BuildWalls : State
 
     public override void UpdateState()
     {
-        //find a defense socket
-        socket = FindValidWallSocket();
 
-        //if the socket is valid go to it and build a wall
-        if (socket != null)
+        if(socket == null && canBuild)
         {
+            socket = FindValidWallSocket();
+
             //path find to the location of the socket
             myAgent.SetDestination(socket.transform.position);
-
-            if (Vector3.Distance(this.gameObject.transform.position, socket.transform.position) < wallOffset)
+            
+            if (Vector3.Distance(this.gameObject.transform.position, socket.transform.position) < myAgent.stoppingDistance)
             {
                 //if close enough to the wall, build the wall
                 BuildDefenses(defenseObj, socket);
                 socket = null; //set socket to null so beent does not try to build another wall
-            }    
-        }
-        else
-        {
-            //leave the state because there are no valid sockets
-            ExitState();
+            }
+
         }
     }
 
@@ -66,6 +64,10 @@ public class BuildWalls : State
         //Update the defense obj list
         Hive.Instance.AddDefence(wall);
 
+        //start cooldown
+        canBuild = false;
+        StartCoroutine(WallCooldown());
+
         UI.WorkerProductivity++; //Increment the worker productivity for score calculation -Leeman
     }
 
@@ -74,27 +76,33 @@ public class BuildWalls : State
         DefenseSocket defenseSocket; //socket to be returned
         List<DefenseSocket> sockets = new List<DefenseSocket>(); //list of valid sockets
 
-        //Check for valid defenses
-        if (Hive.Instance.CountDefenses() > 0)
+        //create a list of valid sockets
+        foreach (DefenseSocket socket in Hive.Instance.defenseSockets)
         {
-            //create a list of valid sockets
-            foreach (DefenseSocket socket in Hive.Instance.defenseSockets)
-            {
-                if (socket.isOccupied == false) sockets.Add(socket);
-            }
+            if (socket.isOccupied == false) sockets.Add(socket);
+        }
 
+        //check for valid sockets
+        if(sockets.Count <= 0)
+        {
+            Debug.Log("no valid sockets: " + sockets.Count);
+            Debug.Log("Hive sockets: " + Hive.Instance.defenseSockets.Count);
+            ExitState();
+            return null;
+        }
+        else
+        {
             //Pick and assign one of those sockets and return it's value
             int randInt = Random.Range(0, sockets.Count);
             sockets[randInt].isOccupied = true;
             defenseSocket = sockets[randInt];
             return defenseSocket;
         }
-        else
-        {
-            //Tell user that there are no valid sockets
-            Debug.Log("No valid defense positions, defense socket null");
-            defenseSocket = null;
-            return defenseSocket;
-        }
+    }
+
+    IEnumerator WallCooldown()
+    {
+        yield return new WaitForSeconds(wallBuildCooldown);
+        canBuild = true;
     }
 }

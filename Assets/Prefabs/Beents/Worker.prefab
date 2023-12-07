@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defenseObj: {fileID: 6518402975294987331, guid: 685235829cbb5ad4b9567c78aca638d6, type: 3}
-  wallOffset: 2
+  wallBuildCooldown: 5
 --- !u!114 &5171421415292582733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +159,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worker: {fileID: 6704244128081501702}
-  roamPointRadius: 20
-  roamPointOffset: 1
+  roamPointRadius: 10
   roamDuration: 10

@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
         if (!CanProduce()) return; // if player can't produce, exit
         Debug.Log("Producing " + _type);
         GameObject _beentPrefab = ChooseBeent(_type);
-        Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
-        _beentPrefab.transform.SetParent(beentHolder.transform); //put beents into the holder
+        GameObject newBeent = Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
+        newBeent.transform.SetParent(beentHolder.transform); //put beents into the holder
         Hive.Instance.AddBeentToPopulation(_beentPrefab.GetComponent<Beent>()); //update beent list
 
     }

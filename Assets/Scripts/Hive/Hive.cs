@@ -84,6 +84,7 @@ public class Hive : MonoBehaviour
     public void AddDefence(GameObject defenceObject)
     {
         defenses.Add(defenceObject);
+        CountDefenses();
     }
 
     //Count the number of beents in the game
@@ -152,10 +153,11 @@ public class Hive : MonoBehaviour
         }
     }
 
-    //Adds a beent to the total list of beents
+    //Adds a beent to the total list of beents and update the total count
     public void AddBeentToPopulation(Beent beent)
     {
         beents.Add(beent);
+        beentPopulation = CountAllBeents();
     }
 
     private void OnDestroy()

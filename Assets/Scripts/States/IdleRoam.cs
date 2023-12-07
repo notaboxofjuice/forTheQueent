@@ -10,7 +10,6 @@ public class IdleRoam : State
 {
     [SerializeField] Worker worker;
     [SerializeField] float roamPointRadius;
-    [SerializeField] float roamPointOffset;
     [SerializeField] float roamDuration;
     private Vector3 randomPoint;
     private bool setInitialPoint;

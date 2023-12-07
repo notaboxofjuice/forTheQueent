@@ -7,7 +7,7 @@ public class DefenseSocket : MonoBehaviour
 {
     //Note: These are valid positions for defense walls, the idea is that you place these where ever you want walls to be placed
     
-    [HideInInspector] public bool isOccupied;
+    public bool isOccupied;
     private MeshRenderer meshRenderer;
 
     private void Start()
