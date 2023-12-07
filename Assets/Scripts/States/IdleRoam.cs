@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class IdleRoam : State
 {
+    [SerializeField] Worker worker;
     [SerializeField] float roamPointRadius;
     [SerializeField] float roamPointOffset;
     [SerializeField] float roamDuration;
@@ -15,23 +16,22 @@ public class IdleRoam : State
     private bool setInitialPoint;
     public override void EnterState()
     {
+        myAgent.speed = worker.defaultSpeed;
         setInitialPoint = false;
+        //makes sure we don't roam forever
+        StartCoroutine(RoamTimer());
         Debug.Log("Idle roaming");
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exiting idle roam");
         base.ExitState();
     }
 
     public override void UpdateState()
     {
-        //makes sure we don't roam forever
-        StartCoroutine(RoamTimer());
-
         //if location == point --> return, this will exit the function and find a new point
-        if (Vector3.Distance(transform.position, randomPoint) <= roamPointOffset || !setInitialPoint)
+        if (Vector3.Distance(transform.position, randomPoint) <= myAgent.stoppingDistance || !setInitialPoint)
         {
             //Select random valid point on the map -->
             randomPoint = transform.position + Random.insideUnitSphere * roamPointRadius;
@@ -50,8 +50,12 @@ public class IdleRoam : State
                 return;
             }
         }
-        
+
+        //set y pos to be achievable
+        randomPoint.y = transform.position.y;
+
         //go to point
+        Debug.Log("Distance to point: " + Vector3.Distance(transform.position, randomPoint));
         myAgent.SetDestination(randomPoint);
     }
 
