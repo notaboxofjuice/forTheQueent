@@ -74,8 +74,6 @@ public class Patrol : State
         }
         else
         {
-            Debug.Log("Attempting to move to index: " + pointIndex);
-            Debug.Log(hasArrived);
             if (myAgent.remainingDistance <= myAgent.stoppingDistance || timer > tryTime)
             {
                 hasArrived = true;

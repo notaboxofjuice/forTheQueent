@@ -56,7 +56,7 @@ public class Gatherer : Beent
     }
     private void DepositPollen()
     {
-        Hive.Instance.currentPollen += heldPollen; // add pollen to hive
+        Hive.Instance.CurrentPollen += heldPollen; // add pollen to hive
         heldPollen = 0; // empty pollen
         ChangeState(GetComponent<FindPollen>()); // return to finding pollen
         UI.GathererProductivity++; // Increment the gatherer productivity for score calculation

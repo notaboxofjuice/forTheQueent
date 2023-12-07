@@ -28,11 +28,11 @@ public class ProduceNectar : State
         //if within adequate distance, produce nectar
         if (Vector3.Distance(this.gameObject.transform.position, pollenStorage.gameObject.transform.position) < pollenStorageOffset )
         {
-            if (canProcess && Hive.Instance.currentPollen > 0)
+            if (canProcess && Hive.Instance.CurrentPollen > 0)
             {
                 ProcessPollen();
             }
-            else if(Hive.Instance.currentPollen < 0)
+            else if(Hive.Instance.CurrentPollen < 0)
             {
                 ExitState();
             }
@@ -45,8 +45,8 @@ public class ProduceNectar : State
 
     private void ProcessPollen()
     {
-        Hive.Instance.currentPollen--;
-        Hive.Instance.currentNectar++;
+        Hive.Instance.CurrentPollen--;
+        Hive.Instance.CurrentNectar++;
 
         UI.WorkerProductivity++; //Increment the worker productivity for score calculation -Leeman
 

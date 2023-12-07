@@ -7,13 +7,16 @@ using UnityEngine;
 public class Follow : State
 {
     Warrior warrior;
-    Vector3 target;
-    float followDistance = 2f;
+    GameObject target;
+    bool hasArrived;
+    float timer;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
-        target = warrior.GetCurrentTarget().transform.position;
+        target = warrior.GetCurrentTarget();
         myAgent.speed = warrior.GetMoveSpeed();
+        hasArrived = true;
+        timer = 0;
     }
     public override void ExitState()
     {  
@@ -21,14 +24,7 @@ public class Follow : State
     }
     public override void UpdateState()
     {
-        if(Vector3.Distance(target, transform.position) <= myAgent.stoppingDistance)
-        {
-            myAgent.SetDestination(target);
-        }
-        else
-        {
-            myAgent.ResetPath();
-        }
+        myAgent.SetDestination(target.transform.position);
     }
     private void OnTriggerEnter(Collider other)
     {
