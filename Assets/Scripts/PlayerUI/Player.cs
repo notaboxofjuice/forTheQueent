@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject gathererPrefab; // Gatherer prefab
     [SerializeField] GameObject warriorPrefab; // Warrior prefab
     [SerializeField] GameObject workerPrefab; // Worker prefab
+    [SerializeField] GameObject beentHolder; //holds the beents for organization
     public void ProduceGatherer() => ProduceBeent(BeentType.Gatherer); // Produce a gatherer
     public void ProduceWarrior() => ProduceBeent(BeentType.Warrior); // Produce a warrior
     public void ProduceWorker() => ProduceBeent(BeentType.Worker); // Produce a worker
@@ -20,6 +21,9 @@ public class Player : MonoBehaviour
         Debug.Log("Producing " + _type);
         GameObject _beentPrefab = ChooseBeent(_type);
         Instantiate(_beentPrefab, spawnPoint.position, spawnPoint.rotation); // spawn beent
+        _beentPrefab.transform.SetParent(beentHolder.transform); //put beents into the holder
+        Hive.Instance.AddBeentToPopulation(_beentPrefab.GetComponent<Beent>()); //update beent list
+
     }
     private GameObject ChooseBeent(BeentType type)
     {

@@ -26,20 +26,20 @@ public class ProduceNectar : State
     public override void UpdateState()
     {
         //if within adequate distance, produce nectar
-        if (Vector3.Distance(this.gameObject.transform.position, pollenStorage.gameObject.transform.position) < pollenStorageOffset )
+        if (Vector3.Distance(this.gameObject.transform.position, Hive.Instance.transform.position) < myAgent.stoppingDistance)
         {
             if (canProcess && Hive.Instance.CurrentPollen > 0)
             {
                 ProcessPollen();
             }
-            else if(Hive.Instance.CurrentPollen < 0)
+            else if(Hive.Instance.CurrentPollen <= 0)
             {
                 ExitState();
             }
         }
         else //path find to the pollen storage to process nectar
         {
-            myAgent.destination = pollenStorage.gameObject.transform.position;
+            myAgent.destination = Hive.Instance.transform.position;
         }
     }
 

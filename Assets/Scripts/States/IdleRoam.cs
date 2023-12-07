@@ -55,7 +55,7 @@ public class IdleRoam : State
         randomPoint.y = transform.position.y;
 
         //go to point
-        Debug.Log("Distance to point: " + Vector3.Distance(transform.position, randomPoint));
+        //Debug.Log("Distance to point: " + Vector3.Distance(transform.position, randomPoint));
         myAgent.SetDestination(randomPoint);
     }
 

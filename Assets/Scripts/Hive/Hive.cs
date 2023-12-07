@@ -37,7 +37,9 @@ public class Hive : MonoBehaviour
     public List<Beent> beents = new();
 
     [Header("References")]
-    [Tooltip("Place all the sockets in this scene here")]public List<DefenseSocket> defenseSockets;
+    [Tooltip("Place all the sockets in this scene here")]
+    public List<DefenseSocket> defenseSockets;
+    
     public GameObject hivebounds;
 
     [Header("Events")]
