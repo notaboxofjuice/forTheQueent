@@ -70,6 +70,11 @@ public class UI : MonoBehaviour
         }
     }
     #endregion
+    #region Pollen and Nectar Counters
+    [Header("Pollen and Nectar Counters")]
+    [SerializeField] TextMeshProUGUI PollenText;
+    [SerializeField] TextMeshProUGUI NectarText;
+    #endregion
     #endregion
     #region Initialization
     private void Start()
@@ -82,6 +87,9 @@ public class UI : MonoBehaviour
         GameOver = false;
         PauseUI.SetActive(IsPaused); // Hide the UI
         UpdateUI(); // Update the UI
+        // Listeners for updating Pollen and Nectar counters
+        Hive.Instance.OnPollenChange.AddListener(UpdatePollenText);
+        Hive.Instance.OnNectarChange.AddListener(UpdateNectarText);
     }
     #endregion
     #region Operations
@@ -120,6 +128,14 @@ public class UI : MonoBehaviour
         MyScoreSO.CheckScore(Score); // Check the score
         if (QuitGame) Application.Quit(); // Quit the game
         else SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Restart the scene
+    }
+    private void UpdatePollenText() // Update the pollen counter
+    {
+        PollenText.text = Hive.Instance.CurrentPollen.ToString();
+    }
+    private void UpdateNectarText() // Update the nectar counter
+    {
+        NectarText.text = Hive.Instance.CurrentNectar.ToString();
     }
     #endregion
 }

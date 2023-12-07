@@ -18,7 +18,7 @@ public class ReturnToHive : State
     }
     private void DepositPollen()
     {
-        Hive.Instance.currentPollen += Father.heldPollen; // add pollen to hive
+        Hive.Instance.CurrentPollen += Father.heldPollen; // add pollen to hive
         Father.heldPollen = 0; // empty pollen
         UI.GathererProductivity++; // Increment the gatherer productivity for score calculation
     }

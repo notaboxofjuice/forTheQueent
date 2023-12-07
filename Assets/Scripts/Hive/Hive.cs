@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BeentEnums;
-
+using UnityEngine.Events;
 //Working on this script: Ky'onna
 
 public class Hive : MonoBehaviour
@@ -12,8 +12,26 @@ public class Hive : MonoBehaviour
     
     [Header("READONLY")]
     public int beentPopulation;
-    public int currentPollen;
-    public int currentNectar;
+    private int pollen;
+    public int CurrentPollen
+    {
+        get { return pollen; }
+        set
+        {
+            pollen = value;
+            OnPollenChange.Invoke();
+        }
+    }
+    private int nectar;
+    public int CurrentNectar
+    {
+        get { return nectar; }
+        set
+        {
+            nectar = value;
+            OnNectarChange.Invoke();
+        }
+    }
     public int maxDefenses;
     public List<GameObject> defenses = new();
     public List<Beent> beents = new();
@@ -21,7 +39,10 @@ public class Hive : MonoBehaviour
     [Header("References")]
     [Tooltip("Place all the sockets in this scene here")]public List<DefenseSocket> defenseSockets;
     public GameObject hivebounds;
-    
+
+    [Header("Events")]
+    public UnityEvent OnPollenChange;
+    public UnityEvent OnNectarChange;
 
     private void Awake()
     {
@@ -31,8 +52,8 @@ public class Hive : MonoBehaviour
         #endregion
 
         //Initialization
-        currentPollen = 0;
-        currentNectar = startingNectar;
+        CurrentPollen = 0;
+        CurrentNectar = startingNectar;
         beentPopulation = 0;
         maxDefenses = defenseSockets.Count; //max defenses = the number of sockets, be sure to add all existing socket to the list
     }

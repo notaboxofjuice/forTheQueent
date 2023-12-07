@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryTarget: {fileID: 0}
+  StayBehindPrimaryTarget: 0
   targetTransforms: []
   minFollowDist: 2
   minHeight: 2
-  maxHeight: 16
+  maxHeight: 32
   smoothTime: 0.1

@@ -2681,6 +2681,8 @@ MonoBehaviour:
   StateText: {fileID: 5811091005165701568}
   ScoreText: {fileID: 1126332662214931674}
   HighScoreText: {fileID: 2468009470612276486}
+  PollenText: {fileID: 4848461049517665017}
+  NectarText: {fileID: 373982767906897684}
 --- !u!1 &8977964921136463033
 GameObject:
   m_ObjectHideFlags: 0

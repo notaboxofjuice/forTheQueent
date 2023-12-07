@@ -40,10 +40,10 @@ public class Player : MonoBehaviour
     }
     private bool CanProduce()
     {
-        int _nectar = Hive.Instance.currentNectar; // get current nectar
+        int _nectar = Hive.Instance.CurrentNectar; // get current nectar
         Debug.Log("Current nektar: " + _nectar);
         if (_nectar < BeentCost) return false; // if player doesn't have enough nectar, exit
-        Hive.Instance.currentNectar -= BeentCost; // subtract nectar
+        Hive.Instance.CurrentNectar -= BeentCost; // subtract nectar
         return true;
     }
 }

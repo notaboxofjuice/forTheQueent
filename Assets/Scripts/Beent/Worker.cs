@@ -23,14 +23,14 @@ public class Worker : Beent
         if (warriorNum > gathererNum)
         {
             //More likely to produce nectar
-            if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
+            if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.CurrentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
             else if (Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
         }
         else
         {
             //more likely to build defensive walls
             if ((Random.Range(0, beentCount) < gathererNum) && Hive.Instance.HasOpenDefenseSockets()) ChangeState(GetComponent<BuildWalls>());
-            else if (Hive.Instance.currentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
+            else if (Hive.Instance.CurrentPollen > 0) ChangeState(GetComponent<ProduceNectar>());
         }
 
         //if all those statements return false we idle for a bit and then check back to see if they are true
