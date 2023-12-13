@@ -9,7 +9,6 @@ public class Beentbarian : Warrior
     protected override void DoSenses()
     {
         FindTarget();
-        ChangeState(gameObject.GetComponent<Attack>());
         inCombat = true;
     }
     private void OnDestroy()
@@ -22,6 +21,7 @@ public class Beentbarian : Warrior
         if(randChoice == 0)
         {
             currentTarget = GameObject.FindGameObjectWithTag("Hive").gameObject;
+            ChangeState(gameObject.GetComponent<Attack>());
         }
         else if(randChoice == 1)
         {
@@ -29,6 +29,7 @@ public class Beentbarian : Warrior
             {
                 int randIndex = Random.Range(0, hive.beents.Count);
                 currentTarget = hive.beents[randIndex].gameObject;
+                ChangeState(gameObject.GetComponent<Attack>());
             }
         }
         else
@@ -37,6 +38,7 @@ public class Beentbarian : Warrior
             {
                 int randIndex = Random.Range(0, hive.defenses.Count);
                 currentTarget = hive.defenses[randIndex].gameObject;
+                ChangeState(gameObject.GetComponent<Attack>());
             }
         }
     }
