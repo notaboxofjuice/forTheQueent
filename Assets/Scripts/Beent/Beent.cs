@@ -17,11 +17,6 @@ public abstract class Beent : MonoBehaviour
     #endregion
     #region Operations
     #region Unity Operations
-    private void Start()
-    {
-        Camera.main.GetComponent<CameraOffset>().targetTransforms.Add(transform); // add this transform to the camera offset script
-    }
-
     private void OnDestroy()
     {
         Debug.Log("removing self from list");

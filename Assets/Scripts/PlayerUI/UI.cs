@@ -13,7 +13,8 @@ public class UI : MonoBehaviour
     [SerializeField] CounterSO MyScoreSO; // CounterSO scriptable object
     [Header("Input System")]
     [SerializeField] PlayerInput PlayerInput;
-    [SerializeField] InputSystemUIInputModule GameUI;
+    [SerializeField] InputSystemUIInputModule PauseUIInputModule;
+    [SerializeField] InputSystemUIInputModule GameUIInputModule;
     #region Score Tracking
     public static int GathererProductivity; // Total pollen gathered
     public static int WarriorProductivity; // Total Beentbarians killed
@@ -30,6 +31,7 @@ public class UI : MonoBehaviour
     #region UI Elements
     [Header("UI Elements")]
     [SerializeField] GameObject PauseUI;
+    [SerializeField] GameObject GameUI;
     [SerializeField] TextMeshProUGUI StateText;
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] TextMeshProUGUI HighScoreText;
@@ -85,7 +87,8 @@ public class UI : MonoBehaviour
         WorkerProductivity = 0;
         IsPaused = false; // Reset flags
         GameOver = false;
-        PauseUI.SetActive(IsPaused); // Hide the UI
+        GameUI.SetActive(!IsPaused); // Show the Game UI
+        PauseUI.SetActive(IsPaused); // Hide the Pause UI
         UpdateUI(); // Update the UI
         // Listeners for updating Pollen and Nectar counters
         Hive.Instance.OnPollenChange.AddListener(UpdatePollenText);
@@ -100,15 +103,17 @@ public class UI : MonoBehaviour
             IsPaused = true; // Update flag
             Time.timeScale = 0; // Pause the game
             UpdateUI();
-            PauseUI.SetActive(IsPaused); // Show the UI
-            PlayerInput.uiInputModule = GetComponent<InputSystemUIInputModule>(); // Send my input module to the player
+            GameUI.SetActive(!IsPaused); // Hide the Game UI
+            PauseUI.SetActive(IsPaused); // Show the Pause UI
+            PlayerInput.uiInputModule = PauseUIInputModule; // Send my input module to the player
         }
         else if (!GameOver) // Game is paused, and not over
         {
             IsPaused = false; // Update flag
             Time.timeScale = 1; // Unpause the game
-            PauseUI.SetActive(IsPaused); // Hide the UI
-            PlayerInput.uiInputModule = GameUI; // Send the game's input module to the player
+            PauseUI.SetActive(IsPaused); // Hide the Pause UI
+            GameUI.SetActive(!IsPaused); // Show the Game UI
+            PlayerInput.uiInputModule = GameUIInputModule; // Send the game's input module to the player
         }
         else return; // Game is over, do nothing
     }
