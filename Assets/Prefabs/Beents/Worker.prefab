@@ -101,8 +101,6 @@ MonoBehaviour:
   MoveSpeed: 5
   beentType: 0
   CurrentState: {fileID: 0}
-  defaultSpeed: 5
-  runSpeed: 10
 --- !u!114 &3496342517054987638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366da832fde45244858a28f0bef7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worker: {fileID: 6704244128081501702}
-  fleeLocationOffset: 2
+  fleeSpeed: 10
   fleeRadius: 10
 --- !u!114 &5756170700928041778
 MonoBehaviour:
@@ -158,6 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84503216f3179fb46a6bab29ef3cef8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worker: {fileID: 6704244128081501702}
+  patrolSpeed: 5
   roamPointRadius: 5
   roamDuration: 10

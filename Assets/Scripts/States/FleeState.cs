@@ -7,9 +7,9 @@ using UnityEngine.AI;
 /// </summary>
 public class FleeState : State
 {
-    [SerializeField] Worker worker;
-
     private Transform threatBeent; //transform of the current threat
+
+    [SerializeField] float fleeSpeed;
 
     [Tooltip("Radius that a random flee point is generated")]
     [SerializeField] float fleeRadius;
@@ -17,7 +17,7 @@ public class FleeState : State
     public override void EnterState()
     {
         //Set the move speed
-        myAgent.speed = worker.runSpeed;
+        myAgent.speed = fleeSpeed;
         Debug.Log(gameObject.name + " is fleeing");
     }
 
