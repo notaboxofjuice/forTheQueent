@@ -21,17 +21,23 @@ public class Beentbarian : Warrior
         int randChoice = Random.Range(0, 3);
         if(randChoice == 0)
         {
-            currentTarget = GameObject.FindGameObjectWithTag("Hive");
+            currentTarget = GameObject.FindGameObjectWithTag("Hive").gameObject;
         }
         else if(randChoice == 1)
         {
-            int randIndex = Random.Range(0, hive.beents.Count);
-            currentTarget = hive.beents[randIndex].gameObject;
+            if(hive.beents.Count > 0) 
+            {
+                int randIndex = Random.Range(0, hive.beents.Count);
+                currentTarget = hive.beents[randIndex].gameObject;
+            }
         }
         else
         {
-            int randIndex = Random.Range(0, hive.defenses.Count);
-            currentTarget = hive.defenses[randIndex];
+            if(hive.defenses.Count > 0)
+            {
+                int randIndex = Random.Range(0, hive.defenses.Count);
+                currentTarget = hive.defenses[randIndex];
+            }
         }
     }
 }
