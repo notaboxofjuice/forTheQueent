@@ -31,7 +31,7 @@ public class DefenseObj : MonoBehaviour
         if (canTakeDamage)
         {
             //take damage
-            currentHealth = -_damageAmount;
+            currentHealth -= _damageAmount;
 
             //start the cooldown, so we don't take repeated damage
             canTakeDamage = false;
