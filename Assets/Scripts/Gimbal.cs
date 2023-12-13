@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class Gimbal : MonoBehaviour
 {
-    private Vector2 _inputVector;
+    [SerializeField] GameObject _camera;
+    private Vector2 _dollyVector;
+    private float _pedestal;
     [SerializeField] float _minHeight;
     [SerializeField] float _maxHeight;
     [SerializeField] float _smoothTime;
@@ -14,8 +13,33 @@ public class Gimbal : MonoBehaviour
     {
         transform.parent = null;
     }
-    public void MoveCamera(InputAction.CallbackContext context)
+    private void FixedUpdate()
     {
-        _inputVector = context.ReadValue<Vector2>();
+        Dolly();
+        Pedestal();
+    }
+    private void Dolly()
+    {
+        Vector3 targetPosition = transform.position;
+        targetPosition += new Vector3(_dollyVector.x, 0, _dollyVector.y);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
+    }
+    private void Pedestal()
+    {
+        Vector3 targetPosition = transform.position;
+        targetPosition.y += _pedestal;
+        targetPosition.y = Mathf.Clamp(targetPosition.y, _minHeight, _maxHeight);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
+    }
+    public void DollyCamera(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        _dollyVector = context.ReadValue<Vector2>();
+        _dollyVector *= -1;
+    }
+    public void PedestalCamera(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        _pedestal = context.ReadValue<float>();
     }
 }

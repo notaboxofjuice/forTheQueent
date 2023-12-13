@@ -96,10 +96,19 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CameraMovement",
+                    "name": "CameraDolly",
                     "type": "PassThrough",
                     "id": "fd046b78-6b16-4263-b749-6645d45d757f",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CameraPedestal",
+                    "type": "PassThrough",
+                    "id": "9bb5e5b1-36df-401d-9369-9f533c68faf9",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -525,13 +534,13 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "IJKL",
                     "id": "8644ab88-181b-4db4-a036-fac047184d5f",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CameraDolly",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -542,7 +551,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "CameraMovement",
+                    "action": "CameraDolly",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -553,7 +562,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "CameraMovement",
+                    "action": "CameraDolly",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -564,7 +573,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "CameraMovement",
+                    "action": "CameraDolly",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -575,7 +584,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "CameraMovement",
+                    "action": "CameraDolly",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "4620938f-4c1f-44ba-afae-74703531a3a8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8a1c40a2-f536-4d6c-861c-b89f1bcc8b7f",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "795a0e9d-9914-4b1a-b260-1c196473eee8",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "89d7f2a9-414a-465e-95b2-1677f6671822",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "85de46c7-a7ab-4732-94bb-17164fa2371b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6d296174-7d4e-4baa-a805-73a90ad99c97",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPedestal",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
