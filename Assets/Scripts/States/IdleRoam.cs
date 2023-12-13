@@ -8,14 +8,14 @@ using UnityEngine.AI;
 
 public class IdleRoam : State
 {
-    [SerializeField] Worker worker;
+    [SerializeField] float patrolSpeed;
     [SerializeField] float roamPointRadius;
     [SerializeField] float roamDuration;
     private Vector3 randomPoint;
     private bool setInitialPoint;
     public override void EnterState()
     {
-        myAgent.speed = worker.defaultSpeed;
+        myAgent.speed = patrolSpeed;
         setInitialPoint = false;
         //makes sure we don't roam forever
         StartCoroutine(RoamTimer());

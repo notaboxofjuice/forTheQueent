@@ -15,6 +15,8 @@ public class DefenseObj : MonoBehaviour
     [SerializeField] int deteriorateRate;
     private bool canTakeDamage;
 
+    [SerializeField] bool deteriorateOverTime;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -23,7 +25,11 @@ public class DefenseObj : MonoBehaviour
 
     private void Update()
     {
-        TakeDamage(deteriorateRate);
+        if (deteriorateOverTime)
+        {
+            TakeDamage(deteriorateRate);
+        }
+        
     }
 
     public void TakeDamage(int _damageAmount)
@@ -31,7 +37,7 @@ public class DefenseObj : MonoBehaviour
         if (canTakeDamage)
         {
             //take damage
-            currentHealth = -_damageAmount;
+            currentHealth -= _damageAmount;
 
             //start the cooldown, so we don't take repeated damage
             canTakeDamage = false;
