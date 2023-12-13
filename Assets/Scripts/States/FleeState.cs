@@ -30,30 +30,39 @@ public class FleeState : State
 
     public override void UpdateState()
     {
-        //get random point in the opposite direction of the threat, but within the flee radius
-        Vector3 randomPoint = Random.insideUnitSphere * fleeRadius;
-        Vector3 oppositeDirection = -threatBeent.position;
-        randomPoint += oppositeDirection;
-
-        // Ensure the point is on the NavMesh, if not exit the function and try again
-        NavMeshHit hit;
-        
-        if (NavMesh.SamplePosition(randomPoint, out hit, fleeRadius, NavMesh.AllAreas))
+        if (threatBeent != null)
         {
-            randomPoint = hit.position;
+            //get random point in the opposite direction of the threat, but within the flee radius
+            Vector3 randomPoint = Random.insideUnitSphere * fleeRadius;
+            Vector3 oppositeDirection = -threatBeent.position;
+            randomPoint += oppositeDirection;
+
+            // Ensure the point is on the NavMesh, if not exit the function and try again
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, fleeRadius, NavMesh.AllAreas))
+            {
+                randomPoint = hit.position;
+            }
+            else
+            {
+                return;
+            }
+
+            //Set the destination to the a flee point
+            myAgent.destination = transform.position + randomPoint;
         }
         else
         {
-            return;
+            Debug.Log("No threat beent");
+            ExitState();
         }
 
-        //Set the destination to the a flee point
-        myAgent.destination = transform.position + randomPoint; 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DefenseObj")) // in range of enemy
+        if (other.CompareTag("Enemy")) // in range of enemy
         {
             //assign the threat beent
             threatBeent = other.gameObject.transform;

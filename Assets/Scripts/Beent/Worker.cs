@@ -71,7 +71,7 @@ public class Worker : Beent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DefenseObj")) // in range of enemy
+        if (other.CompareTag("Enemy")) // in range of enemy
         {
             ChangeState(GetComponent<FleeState>()); // interrupt current state and flee
         }
