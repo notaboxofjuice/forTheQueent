@@ -49,6 +49,8 @@ public class BuildWalls : State
 
     private void BuildDefenses(GameObject _defensiveWall, DefenseSocket _socket)  //builds protective walls to keep Beentbarians at bay
     {
+        Debug.Log("Building a wall");
+
         //Vars
         GameObject wall;
         Quaternion wallRotation;
@@ -61,6 +63,7 @@ public class BuildWalls : State
         //Use instantiate to make the wall at the right position and location, store in a variable
         wall = Instantiate(_defensiveWall, wallPos, wallRotation);
         wall.GetComponent<DefenseObj>().myDefenseSocket = _socket;
+        Debug.Log("Wall: " + wall);
 
         //Assign as a child of the hive, this will make tracking the wallNum easier because it can count Children of type Wall
         wall.transform.SetParent(Hive.Instance.transform, true);

@@ -4,7 +4,7 @@ public class Beentbarian : Warrior
     Hive hive;
     private void Start()
     {
-        hive = GameObject.FindGameObjectWithTag("Hive").GetComponent<Hive>();
+        hive = Hive.Instance;
     }
     protected override void DoSenses()
     {
@@ -36,7 +36,7 @@ public class Beentbarian : Warrior
             if(hive.defenses.Count > 0)
             {
                 int randIndex = Random.Range(0, hive.defenses.Count);
-                currentTarget = hive.defenses[randIndex];
+                currentTarget = hive.defenses[randIndex].gameObject;
             }
         }
     }

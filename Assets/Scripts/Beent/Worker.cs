@@ -52,7 +52,7 @@ public class Worker : Beent
         }
         else
         {
-            int randInt = Random.Range(0, 3);
+            int randInt = Random.Range(0, 3); //Change back to produce nectar, build, and idle roam
             switch (randInt)
             {
                 case 0:
@@ -71,7 +71,7 @@ public class Worker : Beent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // in range of enemy
+        if (other.CompareTag("DefenseObj")) // in range of enemy
         {
             ChangeState(GetComponent<FleeState>()); // interrupt current state and flee
         }
