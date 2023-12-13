@@ -48,12 +48,12 @@ public class FleeState : State
         }
 
         //Set the destination to the a flee point
-        myAgent.destination = transform.position + oppositeDirection; 
+        myAgent.destination = transform.position + randomPoint; 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy")) // in range of enemy
+        if (other.CompareTag("DefenseObj")) // in range of enemy
         {
             //assign the threat beent
             threatBeent = other.gameObject.transform;
@@ -66,7 +66,6 @@ public class FleeState : State
         if (other.gameObject.transform == threatBeent)
         {
             ExitState();
-        }
-        
+        }    
     }
 }
