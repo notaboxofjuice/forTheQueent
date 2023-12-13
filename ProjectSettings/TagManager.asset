@@ -9,6 +9,7 @@ TagManager:
   - Beent
   - Pollen
   - Hive
+  - DefenseObj
   layers:
   - Default
   - TransparentFX
