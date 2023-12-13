@@ -14367,6 +14367,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -4.13
       objectReference: {fileID: 0}
+    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 8406159110384051960, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
       propertyPath: m_Name
       value: Player Controller
