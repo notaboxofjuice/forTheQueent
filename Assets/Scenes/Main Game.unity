@@ -14367,18 +14367,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -4.13
       objectReference: {fileID: 0}
-    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7750720478665433857, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 8406159110384051960, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
       propertyPath: m_Name
       value: Player Controller
@@ -17960,7 +17948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1904290581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17975,7 +17963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3320852837686127402, guid: 2be9378077e816948977a9af178b2586, type: 3}
   maxEnemies: 30
-  SpawnCooldown: 1
+  SpawnCooldown: 5
   SpawnRadius: 4
   SpawnRange: 32
 --- !u!4 &1904290582

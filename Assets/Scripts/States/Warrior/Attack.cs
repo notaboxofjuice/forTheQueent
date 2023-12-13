@@ -13,11 +13,13 @@ public class Attack : State
     [SerializeField] public int attackDamage = 1;
     [Tooltip("The range in which attacks will be attempted. If enemy leaves this range switch to new state")]
     [SerializeField] protected float attackRange = 1f;
+    [SerializeField] protected float attackTime = 15f;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
         target = warrior.GetCurrentTarget().transform.position;
         myAgent.speed = warrior.GetMoveSpeed();
+        StartCoroutine(StaleTimer());
     }
     public override void ExitState()
     {
@@ -50,10 +52,19 @@ public class Attack : State
         {
             warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
         }
-        else
+        else if(warrior.GetCurrentTarget().CompareTag("Beent"))
         {
             warrior.GetCurrentTarget().GetComponent<Beent>().TakeDamage(attackDamage);
         }
+        else
+        {
+            warrior.GetCurrentTarget().GetComponent<DefenseObj>().TakeDamage(attackDamage);
+        }
         yield return new WaitForSeconds(attackSpeed);
+    }
+    IEnumerator StaleTimer()
+    {
+        yield return new WaitForSeconds(attackTime);
+        ExitState();
     }
 }
