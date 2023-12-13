@@ -1,3 +1,4 @@
+using BeentEnums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,8 +45,15 @@ public class Attack : State
         }
     }
     IEnumerator AttackEnemy()
-    {  
-        warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
+    {
+        if (warrior.GetCurrentTarget().CompareTag("Enemy"))
+        {
+            warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
+        }
+        else
+        {
+            warrior.GetCurrentTarget().GetComponent<Beent>().TakeDamage(attackDamage);
+        }
         yield return new WaitForSeconds(attackSpeed);
     }
 }

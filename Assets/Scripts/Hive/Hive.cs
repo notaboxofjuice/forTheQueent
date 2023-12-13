@@ -76,7 +76,6 @@ public class Hive : MonoBehaviour
     public int CountDefenses()
     {
         int numDefenses = defenses.Count;
-
         return numDefenses;
     }
 

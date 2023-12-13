@@ -67,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2265424950900381800}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 786710886213966000}
   m_SourcePrefab: {fileID: 100100000, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
 --- !u!1 &3320852837686127402 stripped
 GameObject:
@@ -88,3 +91,20 @@ MonoBehaviour:
   CurrentHealth: 0
   MoveSpeed: 0
   beentType: 3
+  CurrentState: {fileID: 0}
+  inCombat: 0
+--- !u!114 &786710886213966000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3320852837686127402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b50d2a320c988b428d5ed3e93f68505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 1
+  attackDamage: 1
+  attackRange: 1
