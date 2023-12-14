@@ -21010,14 +21010,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind Ceiling
       objectReference: {fileID: 0}
-    - target: {fileID: 9120813693943847341, guid: cda719e7cc20eaf43abfe5bb8cd6c9a3, type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120813693943847341, guid: cda719e7cc20eaf43abfe5bb8cd6c9a3, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
