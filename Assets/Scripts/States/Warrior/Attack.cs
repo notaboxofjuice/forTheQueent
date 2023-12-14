@@ -16,7 +16,10 @@ public class Attack : State
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
-        target = warrior.GetCurrentTarget().transform.position;
+        if(warrior.GetCurrentTarget() != null)
+        {
+            target = warrior.GetCurrentTarget().transform.position;
+        }
         myAgent.speed = warrior.GetMoveSpeed();
     }
     public override void ExitState()
@@ -27,7 +30,7 @@ public class Attack : State
     }
     public override void UpdateState()
     {
-        if(target != null)
+        if(warrior.GetCurrentTarget() != null)
         {
             float dTT = Vector3.Distance(target, transform.position);
             if(dTT < attackRange) 

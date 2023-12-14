@@ -69,9 +69,6 @@ PrefabInstance:
       addedObject: {fileID: 7002295737132239063}
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3147934949846057397}
-    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -287646999566664247}
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
@@ -79,6 +76,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8174897185869926721}
+    - targetCorrespondingSourceObject: {fileID: 4611521575388261153, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2051638669057301016}
   m_SourcePrefab: {fileID: 100100000, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
 --- !u!1 &6461184571539735477 stripped
 GameObject:
@@ -102,27 +102,6 @@ MonoBehaviour:
   beentType: 2
   CurrentState: {fileID: 0}
   inCombat: 0
---- !u!65 &3147934949846057397
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461184571539735477}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 1}
 --- !u!114 &-287646999566664247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50d2a320c988b428d5ed3e93f68505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
+  attackSpeed: 0.5
   attackDamage: 1
   attackRange: 1
 --- !u!114 &-5777661471375448301
@@ -162,3 +141,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6da6faaa80871d4782b0b389ddb9d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-2051638669057301016
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461184571539735477}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

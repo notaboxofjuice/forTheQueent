@@ -6,6 +6,11 @@ public class Warrior : Beent
 {
     protected GameObject currentTarget;
     public bool inCombat = false;
+    protected Hive hive;
+    private void Start()
+    {
+        hive = Hive.Instance;
+    }
     protected override void DoSenses() // look for events and trigger transitions
     {
         ChangeState(gameObject.GetComponent<Patrol>());

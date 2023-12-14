@@ -84,7 +84,7 @@ public class Patrol : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();
@@ -92,7 +92,7 @@ public class Patrol : State
             ExitState();
             warrior.ChangeState(gameObject.GetComponent<Attack>());
         }
-        else if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Beent") && !warrior.inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
+        else if (other.gameObject.CompareTag("Beent") && !warrior.inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
         {
             warrior.SetTarget(other.gameObject);
             Debug.Log("Moving to ecsort Friendly");

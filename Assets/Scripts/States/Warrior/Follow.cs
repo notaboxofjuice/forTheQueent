@@ -28,7 +28,7 @@ public class Follow : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();

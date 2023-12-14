@@ -1,7 +1,6 @@
 using UnityEngine;
 public class Beentbarian : Warrior
 {
-    Hive hive;
     private void Start()
     {
         hive = Hive.Instance;
