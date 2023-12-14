@@ -49,6 +49,7 @@ public class Attack : State
     }
     IEnumerator AttackEnemy()
     {
+        yield return new WaitForSeconds(attackSpeed);
         if (warrior.GetCurrentTarget().CompareTag("Enemy"))
         {
             warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
@@ -65,6 +66,5 @@ public class Attack : State
         {
             Hive.Instance.Health -= attackDamage;
         }
-        yield return new WaitForSeconds(attackSpeed);
     }
 }
