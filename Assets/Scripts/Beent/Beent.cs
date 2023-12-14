@@ -7,6 +7,7 @@ public abstract class Beent : MonoBehaviour
 {
     #region Attributes
     #region Personal Attributes
+    [SerializeField] protected GameObject deathSound;
     [SerializeField] protected int CurrentHealth;
     [SerializeField] protected float MoveSpeed;
     public BeentType beentType;
@@ -25,6 +26,10 @@ public abstract class Beent : MonoBehaviour
 
         //Update the beent count
         Hive.Instance.beentPopulation = Hive.Instance.CountAllBeents();
+
+        // Instantiate death sound
+        Debug.Log(gameObject.name + " is dying and playing the death sound");
+        Instantiate(deathSound, transform.position, Quaternion.identity);
     }
     protected virtual void FixedUpdate() // perform current state, or do senses
     {

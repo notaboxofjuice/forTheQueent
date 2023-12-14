@@ -103,6 +103,8 @@ public class UI : MonoBehaviour
         Hive.Instance.OnHealthChange.AddListener(UpdateHealthbar);
         Healthbar.maxValue = Hive.Instance.Health;
         Healthbar.value = Healthbar.maxValue;
+        PlayerInput.uiInputModule = null;
+        PlayerInput.uiInputModule = GameUIInputModule; // Send the game's input module to the player
     }
     #endregion
     #region Operations

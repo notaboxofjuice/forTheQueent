@@ -45,15 +45,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85181c1795faf034991c71c5e2cccf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  DeathSound: {fileID: 5410227958827234445, guid: 38a18b2396eb585489c3ac06c451b57b, type: 3}
   startingNectar: 100
   beentPopulation: 0
-  currentPollen: 0
-  currentNectar: 0
   maxDefenses: 0
   defenses: []
   beents: []
   defenseSockets: []
   hivebounds: {fileID: 0}
+  OnPollenChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNectarChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1218021372513269166
 PrefabInstance:
   m_ObjectHideFlags: 0
