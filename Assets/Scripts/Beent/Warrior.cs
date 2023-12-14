@@ -1,6 +1,4 @@
-using BeentEnums;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 public class Warrior : Beent
 {
@@ -15,22 +13,6 @@ public class Warrior : Beent
     {
         ChangeState(gameObject.GetComponent<Patrol>());
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Enemy"))
-        {
-            currentTarget = other.gameObject;
-            ChangeState(gameObject.GetComponent<Attack>());
-            inCombat = true;
-            Debug.Log("New Enemy Found");
-        }
-        else if (GetComponent<Collider>() is SphereCollider && other.gameObject.CompareTag("Beent") && !inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
-        {
-            currentTarget = other.gameObject;
-            ChangeState(gameObject.GetComponent<Follow>());
-            Debug.Log("Moving to ecsort Friendly");  
-        }
-    }
     public GameObject GetCurrentTarget()
     { 
         return currentTarget;
@@ -44,9 +26,10 @@ public class Warrior : Beent
         inCombat = false;
         currentTarget = null;
     }
-    public void StartCombat()
+    public void StartCombat(GameObject target)
     {
         inCombat = true;
+        SetTarget(target);
     }
     public void SetTarget(GameObject target) 
     {

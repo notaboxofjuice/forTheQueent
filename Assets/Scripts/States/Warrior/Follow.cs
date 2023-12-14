@@ -20,24 +20,28 @@ public class Follow : State
     }
     public override void UpdateState()
     {
-        if(warrior.GetCurrentTarget() != null)
+        if (warrior.GetCurrentTarget() != null)
         {
             myAgent.SetDestination(target.transform.position);
         }
         else
         {
             ExitState();
-        } 
+        }
+        CheckforEnemies();
     }
-    private void OnTriggerEnter(Collider other)
+    void CheckforEnemies()
     {
-        if (other.gameObject.tag == "Enemy")
+        foreach(GameObject Beentbarian in EnemySpawner.enemyList)
         {
-            warrior.SetTarget(other.gameObject);
-            warrior.StartCombat();
-            Debug.Log("New Enemy Found");
-            ExitState();
-            warrior.ChangeState(gameObject.GetComponent<Attack>());
+            if(Vector3.Distance(transform.position, Beentbarian.transform.position) < myAgent.stoppingDistance)
+            {
+                warrior.StartCombat(Beentbarian);
+                Debug.Log("New Enemy Found");
+                ExitState();
+                warrior.ChangeState(gameObject.GetComponent<Attack>());
+                break;
+            }
         }
     }
 }

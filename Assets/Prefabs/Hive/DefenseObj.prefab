@@ -121,9 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myDefenseSocket: {fileID: 0}
   currentHealth: 100
-  maxHealth: 30
+  maxHealth: 20
   damageCooldown: 3
-  deteriorateRate: 2
+  deteriorateRate: 4
   deteriorateOverTime: 1
 --- !u!208 &-5395433544019122190
 NavMeshObstacle:

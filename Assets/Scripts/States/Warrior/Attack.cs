@@ -6,22 +6,21 @@ using UnityEngine;
 public class Attack : State
 {
     Warrior warrior;
-    Vector3 target;
+    GameObject target;
     [Tooltip("Time in seconds between each attack")]
     [SerializeField] protected float attackSpeed = 1f;
     [Tooltip("Damage done by each attack")]
     [SerializeField] public int attackDamage = 1;
-    [SerializeField] float staleTime = 45f;
+    //[SerializeField] float staleTime = 45f;
     bool isAttacking = false;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
         if(warrior.GetCurrentTarget() != null)
         {
-            target = warrior.GetCurrentTarget().transform.position;
+            target = warrior.GetCurrentTarget();
         }
         myAgent.speed = warrior.GetMoveSpeed();
-        StartCoroutine(AttackStale());
     }
     public override void ExitState()
     {
@@ -33,14 +32,13 @@ public class Attack : State
     {
         if(warrior.GetCurrentTarget() != null)
         {
-            float dTT = Vector3.Distance(target, transform.position);
-            if(dTT < myAgent.stoppingDistance && !isAttacking) 
+            if(myAgent.remainingDistance < myAgent.stoppingDistance && !isAttacking) 
             {
                 StartCoroutine(AttackEnemy());  
             }
             else
             {
-                myAgent.SetDestination(target);
+                myAgent.SetDestination(target.transform.position);
             }
         }
         else
@@ -51,28 +49,19 @@ public class Attack : State
     IEnumerator AttackEnemy()
     {
         isAttacking = true;
-        if (warrior.GetCurrentTarget().CompareTag("Enemy"))
+        switch(warrior.GetCurrentTarget().tag)
         {
-            warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
-        }
-        else if(warrior.GetCurrentTarget().CompareTag("Beent"))
-        {
-            warrior.GetCurrentTarget().GetComponent<Beent>().TakeDamage(attackDamage);
-        }
-        else if(warrior.GetCurrentTarget().CompareTag("DefenseObj"))
-        {
-            warrior.GetCurrentTarget().GetComponent<DefenseObj>().TakeDamage(attackDamage);
-        }
-        else
-        {
-            Hive.Instance.Health -= attackDamage;
+            case "DefenseObj":
+                warrior.GetCurrentTarget().GetComponent<DefenseObj>().TakeDamage(attackDamage);
+                break;
+            case "Hive":
+                Hive.Instance.Health -= attackDamage;
+                break;
+            default:
+                Destroy(warrior.GetCurrentTarget());
+                break;
         }
         yield return new WaitForSeconds(attackSpeed);
         isAttacking = false;
-    }
-    IEnumerator AttackStale()
-    {
-        yield return new WaitForSeconds(staleTime);
-        ExitState();
     }
 }

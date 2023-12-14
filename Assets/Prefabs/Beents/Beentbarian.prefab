@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2faa208cb15168f4daa55adc47632b4d, type: 2}
     - target: {fileID: 3695403194765845934, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_Radius
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3933835716475988066, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSound: {fileID: 5410227958827234445, guid: 38a18b2396eb585489c3ac06c451b57b, type: 3}
   CurrentHealth: 10
-  MoveSpeed: 15
+  MoveSpeed: 12
   beentType: 3
   CurrentState: {fileID: 0}
   inCombat: 0
@@ -134,7 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0.1
   attackDamage: 1
-  staleTime: 45
 --- !u!54 &9096101122521281579
 Rigidbody:
   m_ObjectHideFlags: 0

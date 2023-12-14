@@ -28,7 +28,8 @@ public class Patrol : State
     }
     public override void UpdateState()
     {
-       FollowPatrolPath();
+        FollowPatrolPath();
+        CheckforEnemies();
     }
     void SetUpPatrol()
     {
@@ -37,8 +38,7 @@ public class Patrol : State
         Vector3 patrolPoint;
         hasArrived = true;
         timer = 0;
-        patrolPoints.Add(Hive.Instance.gameObject.transform.position);
-        while(patrolPoints.Count < 5)
+        while(patrolPoints.Count < 3)
         {
             int _attempts = 5; // Number of attempts to find a spawn point
             do
@@ -50,10 +50,10 @@ public class Patrol : State
                 if (NavMesh.SamplePosition(patrolPoint, out NavMeshHit hit, spawnRadius, NavMesh.AllAreas))
                 {
                     patrolPoints.Add(hit.position);
-                    Debug.Log(hit.position);
                 }
                 else continue;
             } while (Physics.CheckSphere(patrolPoint, spawnRadius, 8) && _attempts > 0); // While the spawn point is too close to other objects
+            patrolPoints.Add(Hive.Instance.gameObject.transform.position);
         }  
     }
     void FollowPatrolPath()
@@ -70,6 +70,7 @@ public class Patrol : State
             else
             {
                 pointIndex = 0;
+                FindEnemy();
             }
             myAgent.SetDestination(patrolPoints[pointIndex]);
         }
@@ -85,20 +86,37 @@ public class Patrol : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
-            warrior.SetTarget(other.gameObject);
-            warrior.StartCombat();
-            Debug.Log("New Enemy Found");
-            ExitState();
-            warrior.ChangeState(gameObject.GetComponent<Attack>());
-        }
-        else if (other.gameObject.CompareTag("Beent") && !warrior.inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
+        if (other.gameObject.CompareTag("Beent") && !warrior.inCombat && other.gameObject.GetComponent<Beent>().beentType != BeentType.Warrior)
         {
             warrior.SetTarget(other.gameObject);
             Debug.Log("Moving to ecsort Friendly");
             ExitState();
             warrior.ChangeState(gameObject.GetComponent<Follow>());
+        }
+    }
+    void FindEnemy()
+    {
+        if(EnemySpawner.enemyList.Count > 0)
+        {
+            int randBarb = Random.Range(0, EnemySpawner.enemyList.Count);
+            warrior.StartCombat(EnemySpawner.enemyList[randBarb].gameObject);
+            Debug.Log("New Enemy Found");
+            ExitState();
+            warrior.ChangeState(gameObject.GetComponent<Attack>());
+        }
+    }
+    void CheckforEnemies()
+    {
+        foreach (GameObject Beentbarian in EnemySpawner.enemyList)
+        {
+            if (Vector3.Distance(transform.position, Beentbarian.transform.position) < myAgent.stoppingDistance)
+            {
+                warrior.StartCombat(Beentbarian);
+                Debug.Log("New Enemy Found");
+                ExitState();
+                warrior.ChangeState(gameObject.GetComponent<Attack>());
+                break;
+            }
         }
     }
 }

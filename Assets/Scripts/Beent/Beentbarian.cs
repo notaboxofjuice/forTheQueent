@@ -47,9 +47,12 @@ public class Beentbarian : Warrior
             {
                 int randIndex = Random.Range(0, hive.defenses.Count);
                 currentTarget = hive.defenses[randIndex].gameObject;
-                if(currentTarget.GetComponent<DefenseObj>()) currentTarget.GetComponent<DefenseObj>().deteriorateOverTime = false; //turn off the deterioration for the target, so it does die before this beent can destroy it
-                inCombat = true;
-                ChangeState(gameObject.GetComponent<Attack>());
+                if (currentTarget != null && currentTarget.GetComponent<DefenseObj>())
+                {
+                    currentTarget.GetComponent<DefenseObj>().deteriorateOverTime = false; //turn off the deterioration for the target, so it does die before this beent can destroy it
+                    inCombat = true;
+                    ChangeState(gameObject.GetComponent<Attack>());
+                }
             }
             else
             {
