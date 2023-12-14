@@ -21,6 +21,7 @@ public class Attack : State
             target = warrior.GetCurrentTarget().transform.position;
         }
         myAgent.speed = warrior.GetMoveSpeed();
+        Invoke(nameof(ExitState), 15f);
     }
     public override void ExitState()
     {
