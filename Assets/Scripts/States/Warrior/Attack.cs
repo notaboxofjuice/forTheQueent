@@ -21,6 +21,10 @@ public class Attack : State
             target = warrior.GetCurrentTarget();
         }
         myAgent.speed = warrior.GetMoveSpeed();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            Invoke(nameof(ExitState), 10f);
+        }
     }
     public override void ExitState()
     {
