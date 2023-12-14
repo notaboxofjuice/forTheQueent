@@ -678,7 +678,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561787484124759246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -3028,7 +3028,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1294680176410084719}
 --- !u!114 &2330488717159621133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3331,6 +3331,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bca44cdba8bf3d349a4807107b026e1d, type: 3}
+--- !u!20 &1294680176410084719 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6995199686413666512, guid: bca44cdba8bf3d349a4807107b026e1d, type: 3}
+  m_PrefabInstance: {fileID: 8134716779478224319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6525851069194853985 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3059117563746440158, guid: bca44cdba8bf3d349a4807107b026e1d, type: 3}

@@ -79,20 +79,19 @@ public class UI : MonoBehaviour
     #endregion
     #endregion
     #region Initialization
-    private void Start()
+    private void Awake()
     {
+        PauseUIInputModule.enabled = false; // Disable the Pause UI input module
         HighScoreText.text = HighScoreString; // Update high score
         GathererProductivity = 0; // Reset productivity
         WarriorProductivity = 0;
         WorkerProductivity = 0;
-        IsPaused = false; // Reset flags
+        IsPaused = true; // Reset flags
         GameOver = false;
-        GameUI.SetActive(!IsPaused); // Show the Game UI
-        PauseUI.SetActive(IsPaused); // Hide the Pause UI
-        UpdateUI(); // Update the UI
         // Listeners for updating Pollen and Nectar counters
         Hive.Instance.OnPollenChange.AddListener(UpdatePollenText);
         Hive.Instance.OnNectarChange.AddListener(UpdateNectarText);
+        DoPause(); // Unpause the game
     }
     #endregion
     #region Operations
@@ -105,6 +104,7 @@ public class UI : MonoBehaviour
             UpdateUI();
             GameUI.SetActive(!IsPaused); // Hide the Game UI
             PauseUI.SetActive(IsPaused); // Show the Pause UI
+            PauseUIInputModule.enabled = true; // Enable the Pause UI input module
             PlayerInput.uiInputModule = PauseUIInputModule; // Send my input module to the player
         }
         else if (!GameOver) // Game is paused, and not over
