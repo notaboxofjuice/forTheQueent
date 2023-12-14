@@ -10,6 +10,7 @@ TagManager:
   - Pollen
   - Hive
   - DefenseObj
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

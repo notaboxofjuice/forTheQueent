@@ -11,6 +11,7 @@ public class Attack : State
     [SerializeField] protected float attackSpeed = 1f;
     [Tooltip("Damage done by each attack")]
     [SerializeField] public int attackDamage = 1;
+    bool isAttacking = false;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
@@ -32,7 +33,7 @@ public class Attack : State
         if(warrior.GetCurrentTarget() != null)
         {
             float dTT = Vector3.Distance(target, transform.position);
-            if(dTT < myAgent.stoppingDistance) 
+            if(dTT < myAgent.stoppingDistance && !isAttacking) 
             {
                 StartCoroutine(AttackEnemy());  
             }
@@ -48,7 +49,7 @@ public class Attack : State
     }
     IEnumerator AttackEnemy()
     {
-        yield return new WaitForSeconds(attackSpeed);
+        isAttacking = true;
         if (warrior.GetCurrentTarget().CompareTag("Enemy"))
         {
             warrior.GetCurrentTarget().GetComponent<Beentbarian>().TakeDamage(attackDamage);
@@ -65,5 +66,7 @@ public class Attack : State
         {
             Hive.Instance.Health -= attackDamage;
         }
+        yield return new WaitForSeconds(attackSpeed);
+        isAttacking = false;
     }
 }
