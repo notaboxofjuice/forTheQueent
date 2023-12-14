@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 266844304254789308}
@@ -46,14 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  DeathSound: {fileID: 5410227958827234445, guid: 38a18b2396eb585489c3ac06c451b57b, type: 3}
   startingNectar: 100
-  beentPopulation: 0
   maxDefenses: 0
   defenses: []
   beents: []
   defenseSockets: []
   hivebounds: {fileID: 0}
+  OnPopulationChange:
+    m_PersistentCalls:
+      m_Calls: []
   OnPollenChange:
     m_PersistentCalls:
       m_Calls: []
