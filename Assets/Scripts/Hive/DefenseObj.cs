@@ -15,7 +15,7 @@ public class DefenseObj : MonoBehaviour
     [SerializeField] int deteriorateRate;
     private bool canTakeDamage;
 
-    [SerializeField] bool deteriorateOverTime;
+    public bool deteriorateOverTime;
 
     private void Start()
     {
