@@ -8,6 +8,7 @@ using UnityEngine.AI;
 /// </summary>
 public class PollenFactory : MonoBehaviour
 {
+    [SerializeField] int NectarDripRate = 5;
     [Header("Pollen Settings")]
     [SerializeField] GameObject PollenPrefab;
     [SerializeField] int MaxPollen;
@@ -19,6 +20,7 @@ public class PollenFactory : MonoBehaviour
     void Start() // Start coroutine to instantiate new pollen objects
     {
         StartCoroutine(SpawnPollen());
+        StartCoroutine(NectarDrip());
     }
     private Vector3 FindSpawnPoint() // Find a random point in the game world that is not too close to other objects
     {
@@ -52,6 +54,14 @@ public class PollenFactory : MonoBehaviour
             newPollen.transform.SetParent(this.gameObject.transform);
             // Wait for the SpawnCooldown before spawning another pollen object
             yield return new WaitForSeconds(SpawnCooldown);
+        }
+    }
+    IEnumerator NectarDrip()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(NectarDripRate);
+            Hive.Instance.CurrentNectar++;
         }
     }
 }
