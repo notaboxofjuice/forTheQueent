@@ -54,11 +54,11 @@ public class Worker : Beent
         int totalResources = Hive.Instance.CurrentPollen + Hive.Instance.CurrentNectar;
         int randomNumber = Random.Range(0, totalResources);
 
-        if(randomNumber < Hive.Instance.CurrentPollen && Hive.Instance.CurrentPollen > 0)
+        if(randomNumber <= Hive.Instance.CurrentPollen && Hive.Instance.CurrentPollen > 0)
         {
             ChangeState(GetComponent<ProduceNectar>());
         }
-        else if(Hive.Instance.HasOpenDefenseSockets()) 
+        else if(randomNumber > Hive.Instance.CurrentPollen && Hive.Instance.HasOpenDefenseSockets()) 
         {
             ChangeState(GetComponent<BuildWalls>());
         }
