@@ -22,7 +22,16 @@ public class Hive : MonoBehaviour
     [SerializeField] int startingNectar = 100; // starting nectar
     
     [Header("READONLY")]
-    public int beentPopulation;
+    private int _beentPopulation;
+    public int beentPopulation
+    {
+        get { return _beentPopulation; }
+        set
+        {
+            _beentPopulation = value;
+            OnPopulationChange.Invoke();
+        }
+    }
     // constructs for pollen and nectar counters to trigger events -Leeman
     private int pollen;
     public int CurrentPollen
@@ -47,7 +56,6 @@ public class Hive : MonoBehaviour
     public int maxDefenses;
     public List<GameObject> defenses = new();
     public List<Beent> beents = new();
-
     [Header("References")]
     [Tooltip("Place all the sockets in this scene here")]
     public List<DefenseSocket> defenseSockets;
@@ -55,6 +63,7 @@ public class Hive : MonoBehaviour
     public GameObject hivebounds;
 
     [Header("Events")] // Leeman
+    public UnityEvent OnPopulationChange;
     public UnityEvent OnPollenChange;
     public UnityEvent OnNectarChange;
     public UnityEvent OnHealthChange;
