@@ -8,10 +8,22 @@ using UnityEngine.Events;
 public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
+    private int health = 100; // hive health and getter/setter -Leeman
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            OnHealthChange.Invoke();
+            if (health <= 0) Destroy(gameObject);
+        }
+    }
     [SerializeField] int startingNectar = 100; // starting nectar
     
     [Header("READONLY")]
     public int beentPopulation;
+    // constructs for pollen and nectar counters to trigger events -Leeman
     private int pollen;
     public int CurrentPollen
     {
@@ -45,6 +57,7 @@ public class Hive : MonoBehaviour
     [Header("Events")] // Leeman
     public UnityEvent OnPollenChange;
     public UnityEvent OnNectarChange;
+    public UnityEvent OnHealthChange;
 
     private void Awake()
     {
