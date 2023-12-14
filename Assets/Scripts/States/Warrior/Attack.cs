@@ -11,8 +11,6 @@ public class Attack : State
     [SerializeField] protected float attackSpeed = 1f;
     [Tooltip("Damage done by each attack")]
     [SerializeField] public int attackDamage = 1;
-    [Tooltip("The range in which attacks will be attempted. If enemy leaves this range switch to new state")]
-    [SerializeField] protected float attackRange = 1f;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
@@ -34,7 +32,7 @@ public class Attack : State
         if(warrior.GetCurrentTarget() != null)
         {
             float dTT = Vector3.Distance(target, transform.position);
-            if(dTT < attackRange) 
+            if(dTT < myAgent.stoppingDistance) 
             {
                 StartCoroutine(AttackEnemy());  
             }
