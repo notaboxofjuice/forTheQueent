@@ -51,6 +51,11 @@ public class Worker : Beent
                 }*/
         #endregion
 
+/*        if (Hive.Instance.CurrentPollen > Hive.Instance.CurrentNectar + 10)
+        {
+            ChangeState(GetComponent<ProduceNectar>());
+        }*/
+
         int totalResources = Hive.Instance.CurrentPollen + Hive.Instance.CurrentNectar;
         int randomNumber = Random.Range(0, totalResources);
 
@@ -69,12 +74,12 @@ public class Worker : Beent
 
     }
 
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy")) // in range of enemy
         {
             ChangeState(GetComponent<FleeState>()); // interrupt current state and flee
         }
-    }
+    }*/
 
 }
