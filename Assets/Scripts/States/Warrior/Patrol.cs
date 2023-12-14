@@ -37,6 +37,7 @@ public class Patrol : State
         Vector3 patrolPoint;
         hasArrived = true;
         timer = 0;
+        patrolPoints.Add(Hive.Instance.gameObject.transform.position);
         while(patrolPoints.Count < 5)
         {
             int _attempts = 5; // Number of attempts to find a spawn point
@@ -84,7 +85,7 @@ public class Patrol : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.tag == "Enemy")
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();

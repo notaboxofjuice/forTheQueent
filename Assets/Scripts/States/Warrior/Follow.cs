@@ -31,7 +31,7 @@ public class Follow : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.tag == "Enemy")
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();

@@ -86,6 +86,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3695403194765845934, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3933835716475988066, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -136,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7026157872003981512, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_StoppingDistance
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -201,9 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b50d2a320c988b428d5ed3e93f68505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.5
+  attackSpeed: 0.1
   attackDamage: 1
-  attackRange: 1
+  staleTime: 45
 --- !u!114 &-5777661471375448301
 MonoBehaviour:
   m_ObjectHideFlags: 0

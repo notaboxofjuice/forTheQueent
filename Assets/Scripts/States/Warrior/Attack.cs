@@ -11,6 +11,7 @@ public class Attack : State
     [SerializeField] protected float attackSpeed = 1f;
     [Tooltip("Damage done by each attack")]
     [SerializeField] public int attackDamage = 1;
+    [SerializeField] float staleTime = 45f;
     bool isAttacking = false;
     public override void EnterState()
     {
@@ -20,7 +21,7 @@ public class Attack : State
             target = warrior.GetCurrentTarget().transform.position;
         }
         myAgent.speed = warrior.GetMoveSpeed();
-        Invoke(nameof(ExitState), 15f);
+        StartCoroutine(AttackStale());
     }
     public override void ExitState()
     {
@@ -68,5 +69,10 @@ public class Attack : State
         }
         yield return new WaitForSeconds(attackSpeed);
         isAttacking = false;
+    }
+    IEnumerator AttackStale()
+    {
+        yield return new WaitForSeconds(staleTime);
+        ExitState();
     }
 }

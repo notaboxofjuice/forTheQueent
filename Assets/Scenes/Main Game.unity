@@ -14352,6 +14352,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2330488717159621133, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: BeentCost
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2330488717159621133, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
       propertyPath: beentHolder
       value: 
       objectReference: {fileID: 631193}
@@ -17990,8 +17994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3320852837686127402, guid: 2be9378077e816948977a9af178b2586, type: 3}
-  maxEnemies: 30
-  SpawnCooldown: 5
+  maxEnemies: 10
+  SpawnCooldown: 3
   SpawnRadius: 4
   SpawnRange: 32
 --- !u!4 &1904290582
