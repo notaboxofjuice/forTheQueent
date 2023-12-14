@@ -15,8 +15,9 @@ public class IdleRoam : State
     private bool setInitialPoint;
     public override void EnterState()
     {
-        myAgent.speed = patrolSpeed;
         setInitialPoint = false;
+        randomPoint = Vector3.zero; //reset the random point
+        myAgent.speed = patrolSpeed;
         //makes sure we don't roam forever
         StartCoroutine(RoamTimer());
         Debug.Log("Idle roaming");
@@ -24,6 +25,8 @@ public class IdleRoam : State
 
     public override void ExitState()
     {
+        setInitialPoint = false;
+        Debug.Log("Exiting roam");
         base.ExitState();
     }
 
@@ -50,12 +53,14 @@ public class IdleRoam : State
             }
         }
 
-        //set y pos to be achievable
-        randomPoint.y = transform.position.y;
+        if (setInitialPoint)
+        {
+            //set y pos to be achievable
+            randomPoint.y = transform.position.y;
 
-        //go to point
-        //Debug.Log("Distance to point: " + Vector3.Distance(transform.position, randomPoint));
-        myAgent.SetDestination(randomPoint);
+            //go to point
+            myAgent.SetDestination(randomPoint);
+        }
     }
 
     private IEnumerator RoamTimer()

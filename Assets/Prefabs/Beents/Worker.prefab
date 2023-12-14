@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6366da832fde45244858a28f0bef7972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  threatBeent: {fileID: 0}
+  safeDistance: 20
   fleeSpeed: 10
   fleeRadius: 10
 --- !u!114 &5756170700928041778
