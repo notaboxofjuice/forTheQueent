@@ -8,15 +8,11 @@ public class Follow : State
 {
     Warrior warrior;
     GameObject target;
-    bool hasArrived;
-    float timer;
     public override void EnterState()
     {
         warrior = Daddy as Warrior;
         target = warrior.GetCurrentTarget();
         myAgent.speed = warrior.GetMoveSpeed();
-        hasArrived = true;
-        timer = 0;
     }
     public override void ExitState()
     {  
@@ -24,14 +20,22 @@ public class Follow : State
     }
     public override void UpdateState()
     {
-        myAgent.SetDestination(target.transform.position);
+        if(warrior.GetCurrentTarget() != null)
+        {
+            myAgent.SetDestination(target.transform.position);
+        }
+        else
+        {
+            ExitState();
+        } 
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && other.gameObject != null)
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();
+            ExitState();
             warrior.ChangeState(GetComponent<Attack>());
         }
     }

@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 10
-  MoveSpeed: 7
+  MoveSpeed: 15
   beentType: 3
   CurrentState: {fileID: 0}
   inCombat: 0
