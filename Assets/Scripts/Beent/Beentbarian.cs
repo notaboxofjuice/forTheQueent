@@ -12,9 +12,10 @@ public class Beentbarian : Warrior
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Beent") && currentTarget == null)
+        if(other.CompareTag("Beent") && !inCombat)
         {
             currentTarget = other.gameObject;
+            inCombat = true;
             ChangeState(gameObject.GetComponent<Attack>());
         }
     }
@@ -31,6 +32,7 @@ public class Beentbarian : Warrior
             {
                 int randIndex = Random.Range(0, hive.beents.Count);
                 currentTarget = hive.beents[randIndex].gameObject;
+                inCombat = true;
                 ChangeState(gameObject.GetComponent<Attack>());
             }
             else
@@ -44,6 +46,7 @@ public class Beentbarian : Warrior
             {
                 int randIndex = Random.Range(0, hive.defenses.Count);
                 currentTarget = hive.defenses[randIndex].gameObject;
+                inCombat = true;
                 ChangeState(gameObject.GetComponent<Attack>());
             }
             else
@@ -55,6 +58,7 @@ public class Beentbarian : Warrior
     void ChargeHive()
     {
         currentTarget = Hive.Instance.gameObject;
+        inCombat = false;
         ChangeState(gameObject.GetComponent<Attack>());
     }
 }

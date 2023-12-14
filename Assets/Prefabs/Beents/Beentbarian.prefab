@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f22274e30e59cbc4ca60201ba6cdf429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 0
-  MoveSpeed: 0
+  CurrentHealth: 10
+  MoveSpeed: 7
   beentType: 3
   CurrentState: {fileID: 0}
   inCombat: 0
