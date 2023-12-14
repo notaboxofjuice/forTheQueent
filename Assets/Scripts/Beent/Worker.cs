@@ -15,54 +15,56 @@ public class Worker : Beent
 
     protected override void DoSenses() // look for events and trigger transitions for state machine, called when current state == null
     {
-        //store beent populations
-        int gathererNum = Hive.Instance.CountBeentsByType(BeentType.Gatherer);
-        int warriorNum = Hive.Instance.CountBeentsByType(BeentType.Warrior);
-        int beentCount = gathererNum + warriorNum; // total beents minus the workers and beentbarians
+        #region Old Code using populations
+        /*        //store beent populations
+                int gathererNum = Hive.Instance.CountBeentsByType(BeentType.Gatherer);
+                int warriorNum = Hive.Instance.CountBeentsByType(BeentType.Warrior);
+                int beentCount = gathererNum + warriorNum; // total beents minus the workers and beentbarians
 
-        if (warriorNum > gathererNum)
+                if (warriorNum > gathererNum)
+                {
+                    //More likely to produce nectar
+                    if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.CurrentPollen > 0)
+                    {
+                        ChangeState(GetComponent<ProduceNectar>());
+                        return;
+                    }
+                    else if (Hive.Instance.HasOpenDefenseSockets())
+                    {
+                        ChangeState(GetComponent<BuildWalls>());
+                        return;
+                    }
+                }
+                else if(warriorNum < gathererNum)
+                {
+                    //more likely to build defensive walls
+                    if ((Random.Range(0, beentCount) < gathererNum) && Hive.Instance.HasOpenDefenseSockets())
+                    {
+                        ChangeState(GetComponent<BuildWalls>());
+                        return;
+                    }
+                    else if (Hive.Instance.CurrentPollen > 0)
+                    {
+                        ChangeState(GetComponent<ProduceNectar>());
+                        return;
+                    }
+                }*/
+        #endregion
+
+        int totalResources = Hive.Instance.CurrentPollen + Hive.Instance.CurrentNectar;
+        int randomNumber = Random.Range(0, totalResources);
+
+        if(randomNumber < Hive.Instance.CurrentPollen && Hive.Instance.CurrentPollen > 0)
         {
-            //More likely to produce nectar
-            if ((Random.Range(0, beentCount) < warriorNum) && Hive.Instance.CurrentPollen > 0)
-            {
-                ChangeState(GetComponent<ProduceNectar>());
-                return;
-            }
-            else if (Hive.Instance.HasOpenDefenseSockets())
-            {
-                ChangeState(GetComponent<BuildWalls>());
-                return;
-            }
+            ChangeState(GetComponent<ProduceNectar>());
         }
-        else if(warriorNum < gathererNum)
+        else if(Hive.Instance.HasOpenDefenseSockets()) 
         {
-            //more likely to build defensive walls
-            if ((Random.Range(0, beentCount) < gathererNum) && Hive.Instance.HasOpenDefenseSockets())
-            {
-                ChangeState(GetComponent<BuildWalls>());
-                return;
-            }
-            else if (Hive.Instance.CurrentPollen > 0)
-            {
-                ChangeState(GetComponent<ProduceNectar>());
-                return;
-            }
+            ChangeState(GetComponent<BuildWalls>());
         }
-        else
+        else //if no pollen and no defense sockets, idle
         {
-            int randInt = Random.Range(0, 3); //Change back to produce nectar, build, and idle roam
-            switch (randInt)
-            {
-                case 0:
-                    ChangeState(GetComponent<ProduceNectar>());
-                    break;
-                case 1:
-                    ChangeState(GetComponent<BuildWalls>());
-                    break;
-                case 2:
-                    ChangeState(GetComponent<IdleRoam>());
-                    break;
-            }
+            ChangeState(GetComponent<IdleRoam>());
         }
 
     }
