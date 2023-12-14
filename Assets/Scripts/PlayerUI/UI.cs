@@ -38,42 +38,8 @@ public class UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] TextMeshProUGUI HighScoreText;
     [SerializeField] Slider Healthbar;
-    private string ScoreTextString // Average beent productivity
-    {
-        get
-        {
-            // get score as string and add commas
-            string scoreString = Score.ToString();
-            string scoreStringWithCommas = "";
-            for (int i = 0; i < scoreString.Length; i++)
-            {
-                if (i % 3 == 0 && i != 0)
-                {
-                    scoreStringWithCommas += ",";
-                }
-                scoreStringWithCommas += scoreString[i];
-            }
-            return "Score: " + scoreStringWithCommas;
-        }
-    }
-    private string HighScoreString // High score from scriptable object
-    {
-        get
-        {
-            // get score as string and add commas
-            string scoreString = MyScoreSO.MaxCount.ToString();
-            string scoreStringWithCommas = "";
-            for (int i = 0; i < scoreString.Length; i++)
-            {
-                if (i % 3 == 0 && i != 0)
-                {
-                    scoreStringWithCommas += ",";
-                }
-                scoreStringWithCommas += scoreString[i];
-            }
-            return "High Score: " + scoreStringWithCommas;
-        }
-    }
+    private string ScoreTextString => "Score: " + Score.ToString("N0"); // Average beent productivity
+    private string HighScoreString => "High Score: " + MyScoreSO.MaxCount.ToString("N0"); // High score from scriptable object
     #endregion
     #region Pollen and Nectar Counters
     [Header("Pollen and Nectar Counters")]
