@@ -10,7 +10,6 @@ public class BuildWalls : State
 {
     [SerializeField] GameObject defenseObj;
     [SerializeField] float wallBuildCooldown;
-    [SerializeField] NavMeshSurface[] navMeshes;
     private bool canBuild = true;
     private DefenseSocket socket;
     public override void EnterState()
@@ -71,9 +70,6 @@ public class BuildWalls : State
         //Update the defense obj list
         Hive.Instance.AddDefence(wall);
 
-        //update the nav mesh
-        UpdateNavMeshes();
-
         //start cooldown
         canBuild = false;
         StartCoroutine(WallCooldown());
@@ -117,15 +113,4 @@ public class BuildWalls : State
         canBuild = true;
     }
 
-    private void UpdateNavMeshes()
-    {
-        Debug.Log("Updating Navmesh");
-
-        NavMeshData data;
-        foreach(NavMeshSurface surface in navMeshes)
-        {
-            data = surface.navMeshData;
-            surface.UpdateNavMesh(data);
-        }
-    }
 }
