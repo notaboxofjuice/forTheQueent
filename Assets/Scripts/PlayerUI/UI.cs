@@ -102,7 +102,7 @@ public class UI : MonoBehaviour
         Hive.Instance.OnNectarChange.AddListener(UpdateNectarText);
         Hive.Instance.OnHealthChange.AddListener(UpdateHealthbar);
         Healthbar.maxValue = Hive.Instance.Health;
-        UpdateHealthbar(); // Update the healthbar
+        Healthbar.value = Healthbar.maxValue;
     }
     #endregion
     #region Operations

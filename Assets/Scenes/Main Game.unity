@@ -14355,6 +14355,22 @@ PrefabInstance:
       propertyPath: beentHolder
       value: 
       objectReference: {fileID: 631193}
+    - target: {fileID: 2909685767307928278, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909685767307928278, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489557708696186365, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5577238995213999359, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7446253854201711378, guid: 8f8cc86f3068d1046bcd39f5ecd69831, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.81
