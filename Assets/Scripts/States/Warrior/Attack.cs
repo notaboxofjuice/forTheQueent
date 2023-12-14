@@ -35,14 +35,7 @@ public class Attack : State
             float dTT = Vector3.Distance(target, transform.position);
             if(dTT < attackRange) 
             {
-                if (warrior.GetCurrentTarget().CompareTag("Hive"))
-                {
-                    ExitState();
-                }
-                else
-                {
-                    StartCoroutine(AttackEnemy());
-                }   
+                StartCoroutine(AttackEnemy());  
             }
             else
             {
@@ -64,9 +57,13 @@ public class Attack : State
         {
             warrior.GetCurrentTarget().GetComponent<Beent>().TakeDamage(attackDamage);
         }
-        else
+        else if(warrior.GetCurrentTarget().CompareTag("DefenseObj"))
         {
             warrior.GetCurrentTarget().GetComponent<DefenseObj>().TakeDamage(attackDamage);
+        }
+        else
+        {
+            Hive.Instance.Health -= attackDamage;
         }
         yield return new WaitForSeconds(attackSpeed);
     }
