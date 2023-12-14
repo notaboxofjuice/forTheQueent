@@ -21,6 +21,7 @@ public class Beentbarian : Warrior
     private void OnDestroy()
     {
         Instantiate(deathSound, transform.position, Quaternion.identity);
+        EnemySpawner.enemyList.Remove(gameObject);
         UI.WarriorProductivity++; // Increment the warrior productivity for score calculation -Leeman
     }
     void FindTarget()
