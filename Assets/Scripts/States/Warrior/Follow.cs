@@ -31,12 +31,13 @@ public class Follow : State
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject != null && other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             warrior.SetTarget(other.gameObject);
             warrior.StartCombat();
+            Debug.Log("New Enemy Found");
             ExitState();
-            warrior.ChangeState(GetComponent<Attack>());
+            warrior.ChangeState(gameObject.GetComponent<Attack>());
         }
     }
 }
