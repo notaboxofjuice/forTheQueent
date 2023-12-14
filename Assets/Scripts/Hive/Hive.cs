@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Hive : MonoBehaviour
 {
     public static Hive Instance { get; private set; } // singelton instantiation
-    private int health = 100; // hive health and getter/setter -Leeman
+    [SerializeField] int health = 100; // hive health and getter/setter -Leeman
     public int Health
     {
         get { return health; }

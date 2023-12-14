@@ -1,8 +1,10 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 /// <summary>
 /// Assigned to UI object under Player Controller
 /// Shows CounterSO, Restart button, Quit button, and either Pause or Game Over text.
@@ -35,6 +37,7 @@ public class UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI StateText;
     [SerializeField] TextMeshProUGUI ScoreText;
     [SerializeField] TextMeshProUGUI HighScoreText;
+    [SerializeField] Slider Healthbar;
     private string ScoreTextString // Average beent productivity
     {
         get
@@ -97,6 +100,9 @@ public class UI : MonoBehaviour
         // Listeners for updating Pollen and Nectar counters
         Hive.Instance.OnPollenChange.AddListener(UpdatePollenText);
         Hive.Instance.OnNectarChange.AddListener(UpdateNectarText);
+        Hive.Instance.OnHealthChange.AddListener(UpdateHealthbar);
+        Healthbar.maxValue = Hive.Instance.Health;
+        UpdateHealthbar(); // Update the healthbar
     }
     #endregion
     #region Operations
@@ -146,6 +152,10 @@ public class UI : MonoBehaviour
     private void UpdateNectarText() // Update the nectar counter
     {
         NectarText.text = Hive.Instance.CurrentNectar.ToString();
+    }
+    private void UpdateHealthbar() // Update the healthbar
+    {
+        Healthbar.value = Hive.Instance.Health;
     }
     #endregion
 }
