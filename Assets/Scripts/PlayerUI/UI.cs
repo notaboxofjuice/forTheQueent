@@ -79,7 +79,7 @@ public class UI : MonoBehaviour
     #endregion
     #endregion
     #region Initialization
-    private void Start()
+    private void Awake()
     {
         PauseUIInputModule.enabled = false; // Disable the Pause UI input module
         HighScoreText.text = HighScoreString; // Update high score
@@ -88,6 +88,9 @@ public class UI : MonoBehaviour
         WorkerProductivity = 0;
         IsPaused = false; // Reset flags
         GameOver = false;
+    }
+    private void Start()
+    {
         UpdateUI(); // Update the UI
         PauseUI.SetActive(IsPaused); // Hide
         GameUI.SetActive(!IsPaused); // Show
