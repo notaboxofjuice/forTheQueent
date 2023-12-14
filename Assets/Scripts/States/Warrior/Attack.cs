@@ -62,7 +62,7 @@ public class Attack : State
                 Hive.Instance.Health -= attackDamage;
                 break;
             default:
-                Destroy(warrior.GetCurrentTarget());
+                warrior.GetCurrentTarget().GetComponent<Beent>().TakeDamage(attackDamage);
                 break;
         }
         yield return new WaitForSeconds(attackSpeed);
