@@ -69,7 +69,7 @@ public class UI : MonoBehaviour
         Hive.Instance.OnHealthChange.AddListener(UpdateHealthbar);
         Healthbar.maxValue = Hive.Instance.Health;
         Healthbar.value = Healthbar.maxValue;
-        PlayerInput.uiInputModule = null;
+        PlayerInput.uiInputModule = null; //<-- Commenting out this line of code enables the UI on start without needing to pause, however, it doesn't fix the issue where you need to pause and unpause when restarting to make the camera work -Ky'onna
         PlayerInput.uiInputModule = GameUIInputModule; // Send the game's input module to the player
     }
     #endregion
