@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7026157872003981512, guid: f1bc1ffde0b0f0d4ca2cc3dc1db1236c, type: 3}
       propertyPath: m_StoppingDistance
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -204,8 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defenseObj: {fileID: 6518402975294987331, guid: 685235829cbb5ad4b9567c78aca638d6, type: 3}
-  wallBuildCooldown: 10
-  navMeshes: []
+  wallBuildCooldown: 5
 --- !u!114 &5171421415292582733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolSpeed: 5
   roamPointRadius: 5
-  roamDuration: 10
+  roamDuration: 7
 --- !u!54 &-7211055720667293610
 Rigidbody:
   m_ObjectHideFlags: 0
